@@ -115,7 +115,10 @@ align-items:center;
   justify-content:center;
 }
 
-
+.nav-item.active .nav-link {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
 /*Compétences*/
 
 .banniere-skills img { 
@@ -238,6 +241,7 @@ align-items:center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 
 

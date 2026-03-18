@@ -1,148 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-portfolio Anthony El Dahdah</title> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anthony El Dahdah — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:    #1A73E8;
+      --blue-dk: #1558b0;
+      --blue-lt: #EAF1FD;
+      --blue-bd: #C5D9F8;
+      --white:   #FFFFFF;
+      --gray:    #F8F9FA;
+      --border:  #E2E6EA;
+      --muted:   #5F6368;
+      --dark:    #1C2028;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; line-height: 1.75; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+ 
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 2px solid var(--blue);
+      padding: 0 2.5rem; height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--dark); letter-spacing: -0.01em; text-decoration: none; }
+    .nav-brand:hover { color: var(--blue); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+    .nav-links a { font-size: 0.83rem; font-weight: 600; color: var(--muted); padding: 0.32rem 0.75rem; border-radius: 4px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--blue-lt); text-decoration: none; }
+    .nav-cv { background: var(--blue) !important; color: var(--white) !important; margin-left: 0.5rem; font-weight: 600 !important; }
+    .nav-cv:hover { background: var(--blue-dk) !important; }
+ 
+    /* HERO fond sombre */
+    .hero { background: var(--dark); padding: 3.5rem 2.5rem; }
+    .hero-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center;
+    }
+    .hero-photo-wrap { position: relative; flex-shrink: 0; }
+    .hero-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid var(--blue); }
+    .hero-dot { position: absolute; bottom: 6px; right: 6px; width: 18px; height: 18px; border-radius: 50%; background: #34A853; border: 3px solid var(--dark); }
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.74rem; font-weight: 600; color: #81c995;
+      background: rgba(52,168,83,0.12); border: 1px solid rgba(52,168,83,0.25);
+      padding: 0.18rem 0.65rem; border-radius: 100px; margin-bottom: 0.7rem;
+    }
+    .hero-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--white); letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+    .hero-role { font-size: 0.88rem; color: rgba(255,255,255,0.45); margin-bottom: 1.1rem; }
+    .hero-bio { font-size: 0.9rem; color: rgba(255,255,255,0.78); max-width: 560px; line-height: 1.8; margin-bottom: 1.4rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { font-family: 'Fira Code', monospace; font-size: 0.7rem; padding: 0.25rem 0.65rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); }
+    .tag.blue { border-color: rgba(26,115,232,0.5); color: #7ab8f5; background: rgba(26,115,232,0.12); }
+ 
+    /* CONTAINER */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 2.5rem; }
+    section { padding: 3rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-label { font-family: 'Fira Code', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem; }
+    .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
+ 
+    /* PROFIL */
+    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .block-title { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem; }
+    .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .info-list li { font-size: 0.875rem; display: flex; gap: 0.6rem; align-items: baseline; }
+    .lbl { font-weight: 600; color: var(--muted); min-width: 76px; flex-shrink: 0; font-size: 0.8rem; }
+ 
+    /* FORMATION */
+    .formation-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .formation-card { background: var(--gray); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: 0 6px 6px 0; padding: 1.1rem 1.4rem; }
+    .formation-date { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--blue); margin-bottom: 0.25rem; }
+    .formation-title { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .formation-sub { font-size: 0.82rem; color: var(--muted); }
+    .modules-title { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--dark); margin: 1.4rem 0 0.7rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .pill { font-size: 0.78rem; font-weight: 500; padding: 0.28rem 0.75rem; border-radius: 100px; background: var(--blue-lt); border: 1px solid var(--blue-bd); color: var(--blue); }
+ 
+    /* SOFT SKILLS */
+    .soft-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .soft-pill { font-size: 0.82rem; font-weight: 500; padding: 0.3rem 0.85rem; border-radius: 100px; background: var(--gray); border: 1px solid var(--border); color: var(--dark); }
+ 
+    /* CENTRES D'INTÉRÊT */
+    .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .interest-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.25rem; background: var(--white); position: relative; overflow: hidden; }
+    .interest-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
+    .interest-icon { font-size: 1.6rem; margin-bottom: 0.65rem; }
+    .interest-title { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .interest-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+    .interest-note { display: inline-block; margin-top: 0.75rem; font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--blue); }
+ 
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.3); text-align: center; padding: 1.4rem; font-size: 0.78rem; margin-top: 1rem; }
+ 
+    @media (max-width: 720px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .profil-grid { grid-template-columns: 1fr; }
+      .interests-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1.25rem; }
+      .nav-links a { padding: 0.25rem 0.5rem; font-size: 0.76rem; }
+      .hero { padding: 2.5rem 1.5rem; }
+      .container { padding: 0 1.5rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Profil</a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <ul class="navbar-nav mr-auto">
-
-      <li class="nav-item active">
-        <a class="nav-link text-dark" href="index.html">Home</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="compétences.html">Compétences</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Experiences.html">Experiences</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Loisirs.html">Centres d'intérêts</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Contact.html">Contact</a>
-      </li>
-
-    </ul>
-
-  </div>
+ 
+<nav>
+  <a href="index.html" class="nav-brand">Anthony El Dahdah</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="experiences.html">Expériences</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="CV_Anthony_EL_DAHDAH.pdf" target="_blank" class="nav-cv">CV ↓</a></li>
+  </ul>
 </nav>
-<a class="btn btn-primary ml-2"
-   href="/E-Portfolio/CV_Anthony_EL_DAHDAH.pdf"
-   target="_blank">
-   Voir le CV
-</a>
+ 
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <img src="image/antho.jpg" alt="Photo Anthony El Dahdah" class="hero-photo" onerror="this.style.display='none'"/>
+      <div class="hero-dot"></div>
+    </div>
+    <div>
+      <div class="hero-status">● Disponible pour un stage</div>
+      <h1 class="hero-name">Anthony El Dahdah</h1>
+      <p class="hero-role">Étudiant BUT Science des Données · IUT Paris Rives de Seine · Parcours EMS</p>
+      <p class="hero-bio">Je mets la data au service de la compréhension. Analyse, visualisation, automatisation : je transforme des données complexes en solutions claires et exploitables. Rigoureux, persévérant et capable de m'adapter à toutes les situations.</p>
+      <div class="hero-tags">
+        <span class="tag blue">SAS</span><span class="tag blue">R / Shiny</span><span class="tag blue">Power BI</span><span class="tag blue">Python</span><span class="tag blue">SQL</span><span class="tag">Excel</span><span class="tag">ggplot2</span><span class="tag">dplyr</span><span class="tag">Permis B</span>
+      </div>
+    </div>
   </div>
-</nav>
-
-<!--JavaScript-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!--CONTENU-->
-<header>
-<br>
-<br>
-<br>
-<h1><center>Bienvenue sur le E‑portfolio de Anthony EL DAHDAH</center></h1>
-</header>
-
-
-<main class="container">
-
-
-<!-- PROFIL -->
-<section class="card profile">
-<img src="image/antho.jpg" alt="Photo Anthony">
-
-
-<div class="profile-text">
-<h2>Anthony El Dahdah</h2>
-
-
-<p>
-Étudiant en BUT Science des Données, je mets la data au service de la compréhension.
-Analyse, visualisation, automatisation : j’aide à transformer des données complexes
-en solutions claires et exploitables. Rigoureux et persévérant, je suis capable de
-m'adapter à toutes les situations. Mon dynamisme me permet de mener à bien les
-missions en entreprise.
-</p>
-
-
-<span class="badge">Permis B</span>
 </div>
-</section>
-
-
-
-
-<section class="grid">
-
-
-<!-- COORDONNEES -->
-<div class="card">
-<h3>Coordonnées</h3>
-<ul>
-<li>Email : <a href="mailto:eldahdahanthony@gmail.com">eldahdahanthony@gmail.com</a></li>
-<li>Âge : 19 ans</li>
-<li>Linkedin : <a href="https://www.linkedin.com/in/anthony-el-dahdah-53ab122b2/">Anthony EL DAHDAH</a></li>
-</ul>
+ 
+<div class="container">
+ 
+  <section>
+    <div class="section-label">Présentation</div>
+    <h2 class="section-title">Profil</h2>
+    <div class="profil-grid">
+      <div>
+        <div class="block-title">Coordonnées</div>
+        <ul class="info-list">
+          <li><span class="lbl">Email</span><a href="mailto:eldahdahanthony@gmail.com">eldahdahanthony@gmail.com</a></li>
+          <li><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/anthony-el-dahdah-53ab122b2/" target="_blank">Anthony El Dahdah ↗</a></li>
+          <li><span class="lbl">Âge</span>19 ans</li>
+          <li><span class="lbl">Mobilité</span>Paris &amp; Île-de-France · Permis B</li>
+        </ul>
+      </div>
+      <div>
+        <div class="block-title">Objectif professionnel</div>
+        <p style="font-size:0.875rem; line-height:1.8; color:var(--dark);">Ce portfolio démontre mon esprit de synthèse sur les projets réalisés en formation, au-delà de mes compétences en informatique décisionnelle. Je cherche un stage où je pourrai contribuer concrètement à des projets data — préparation de données, analyse statistique, production de tableaux de bord.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section>
+    <div class="section-label">Parcours académique</div>
+    <h2 class="section-title">Formation</h2>
+    <div class="formation-list">
+      <div class="formation-card">
+        <div class="formation-date">2023 – Aujourd'hui</div>
+        <div class="formation-title">BUT Science des Données — Parcours EMS</div>
+        <div class="formation-sub">IUT Paris Rives de Seine · Université Paris Cité · 2ème année · Exploration et Modélisation Statistique</div>
+      </div>
+      <div class="formation-card">
+        <div class="formation-date">2023</div>
+        <div class="formation-title">Baccalauréat</div>
+        <div class="formation-sub">Spécialités Mathématiques et NSI</div>
+      </div>
+    </div>
+    <div class="modules-title">Enseignements clés</div>
+    <div class="pills">
+      <span class="pill">Statistiques descriptives</span><span class="pill">Modélisation statistique</span><span class="pill">Machine Learning</span><span class="pill">Bases de données &amp; SQL</span><span class="pill">Visualisation de données</span><span class="pill">Business Intelligence</span><span class="pill">Méthodes d'enquête</span><span class="pill">Communication scientifique</span>
+    </div>
+  </section>
+ 
+  <section>
+    <div class="section-label">Savoir-être</div>
+    <h2 class="section-title">Compétences transversales</h2>
+    <div class="soft-pills">
+      <span class="soft-pill">Rigueur analytique</span><span class="soft-pill">Esprit de synthèse</span><span class="soft-pill">Autonomie</span><span class="soft-pill">Adaptabilité</span><span class="soft-pill">Persévérance</span><span class="soft-pill">Communication des résultats</span><span class="soft-pill">Travail en équipe</span><span class="soft-pill">Curiosité intellectuelle</span>
+    </div>
+  </section>
+ 
+  <section>
+    <div class="section-label">En dehors du travail</div>
+    <h2 class="section-title">Centres d'intérêt</h2>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <div class="interest-icon">🎵</div>
+        <div class="interest-title">Musique orchestrale (MAO)</div>
+        <p class="interest-desc">Je m'entraîne à recréer et arranger des musiques de film orchestrales. Cette pratique développe ma créativité et ma capacité à structurer un projet de A à Z.</p>
+        <span class="interest-note">Composition · Arrangement</span>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">♟️</div>
+        <div class="interest-title">Échecs</div>
+        <p class="interest-desc">Pratique quotidienne depuis 10 mois. Les échecs entraînent la pensée stratégique et la concentration — qualités que j'applique dans mes analyses de données.</p>
+        <span class="interest-note">Elo 750 · Chess.com</span>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">💪</div>
+        <div class="interest-title">Sport &amp; Fitness</div>
+        <p class="interest-desc">Pratique régulière en salle depuis 3 ans. Le sport me permet de maintenir un équilibre entre exigences académiques et bien-être personnel.</p>
+        <span class="interest-note">3 ans · Musculation</span>
+      </div>
+    </div>
+  </section>
+ 
 </div>
-
-
-<!-- FORMATION -->
-<div class="card">
-<h3>Formation</h3>
-<ul>
-<li>
-<strong>2024 – Aujourd'hui</strong><br>
-2ème année BUT Science des Données – IUT Paris Rives de Seine
-</li>
-
-
-<li>
-<strong>Parcours :</strong><br>
-Exploration et Modélisation Statistique
-</li>
-</ul>
-</div>
-
-
-</section>
-
-
-</main>
-
-
-<footer>
-© 2026 – Portfolio Anthony EL DAHDAH
-</footer>
-    </body>
-
+ 
+<footer>© 2026 – Portfolio Anthony El Dahdah · BUT Science des Données · IUT Paris Rives de Seine</footer>
+</body>
 </html>
-
-
-
-
-
-
-
-

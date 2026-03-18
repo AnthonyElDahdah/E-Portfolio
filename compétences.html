@@ -1,109 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-portfolio Anthony El Dahdah</title> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compétences — Anthony El Dahdah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:    #1A73E8; --blue-dk: #1558b0; --blue-lt: #EAF1FD; --blue-bd: #C5D9F8;
+      --white:   #FFFFFF; --gray: #F8F9FA; --border: #E2E6EA; --muted: #5F6368; --dark: #1C2028;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Open Sans', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; line-height: 1.75; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+ 
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 2px solid var(--blue);
+      padding: 0 2.5rem; height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--dark); letter-spacing: -0.01em; text-decoration: none; }
+    .nav-brand:hover { color: var(--blue); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+    .nav-links a { font-size: 0.83rem; font-weight: 600; color: var(--muted); padding: 0.32rem 0.75rem; border-radius: 4px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--blue-lt); text-decoration: none; }
+    .nav-cv { background: var(--blue) !important; color: var(--white) !important; margin-left: 0.5rem; font-weight: 600 !important; }
+    .nav-cv:hover { background: var(--blue-dk) !important; }
+ 
+    /* EN-TÊTE */
+    .page-header {
+      background: var(--dark); padding: 3rem 2.5rem;
+    }
+    .page-header-inner { max-width: 960px; margin: 0 auto; }
+    .page-eyebrow { font-family: 'Fira Code', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+    .page-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--white); letter-spacing: -0.02em; }
+    .page-title span { color: var(--blue); }
+ 
+    /* GRILLE */
+    .cards-wrap { max-width: 960px; margin: 2.5rem auto; padding: 0 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
+ 
+    .card { background: var(--gray); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; position: relative; overflow: hidden; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
+ 
+    .card-title { font-family: 'Montserrat', sans-serif; font-size: 0.92rem; font-weight: 700; color: var(--dark); margin-bottom: 1.25rem; }
+ 
+    /* Savoir-être */
+    .savoir-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .savoir-list li { font-size: 0.875rem; color: var(--dark); display: flex; align-items: center; gap: 0.6rem; }
+    .savoir-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+ 
+    /* Blocs texte */
+    .bloc { margin-bottom: 1.1rem; }
+    .bloc:last-child { margin-bottom: 0; }
+    .bloc-title { font-size: 0.8rem; font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; }
+    .bloc-content { font-size: 0.835rem; color: var(--muted); line-height: 1.65; }
+ 
+    /* Tags code */
+    .code-tag { font-family: 'Fira Code', monospace; font-size: 0.75rem; background: var(--blue-lt); color: var(--blue); border: 1px solid var(--blue-bd); padding: 0.1rem 0.4rem; border-radius: 3px; }
+ 
+    footer { background: var(--dark); color: rgba(255,255,255,0.3); text-align: center; padding: 1.4rem; font-size: 0.78rem; margin-top: 1rem; }
+ 
+    @media (max-width: 768px) {
+      .cards-wrap { grid-template-columns: 1fr; }
+      nav { padding: 0 1.25rem; }
+      .nav-links a { padding: 0.25rem 0.5rem; font-size: 0.76rem; }
+      .page-header { padding: 2.5rem 1.5rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Compétences</a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <ul class="navbar-nav mr-auto">
-
-      <li class="nav-item active">
-        <a class="nav-link text-dark" href="index.html">Home</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="compétences.html">Compétences</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Experiences.html">Experiences</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Loisirs.html">Centres d'intérêts</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="Contact.html">Contact</a>
-      </li>
-
-    </ul>
-
-  </div>
+ 
+<nav>
+  <a href="index.html" class="nav-brand">Anthony El Dahdah</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="competences.html" class="active">Compétences</a></li>
+    <li><a href="experiences.html">Expériences</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="CV_Anthony_EL_DAHDAH.pdf" target="_blank" class="nav-cv">CV ↓</a></li>
+  </ul>
 </nav>
-
-
-<!--JavaScript-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!--CONTENU-->
-<br><br><br>
-<h1><center>Mes compétences</center></h1>
-<section class="competences">
-
-
-    <div class="competence-card">
-        <h3>Savoir-être</h3>
-
-        <ul>
-            <li><b>Sens du relationnel</b></li>
-            <li><b>Esprit d’équipe</b></li>
-            <li><b>Rigueur</b></li>
-            <li><b>Esprit d’analyse</b></li>
-        </ul>
+ 
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Savoir-faire · Outils · Méthodes</div>
+    <h1 class="page-title">Mes <span>Compétences</span></h1>
+  </div>
+</div>
+ 
+<div class="cards-wrap">
+ 
+  <div class="card">
+    <div class="card-title">Savoir-être</div>
+    <ul class="savoir-list">
+      <li>Sens du relationnel</li>
+      <li>Esprit d'équipe</li>
+      <li>Rigueur</li>
+      <li>Esprit d'analyse</li>
+    </ul>
+  </div>
+ 
+  <div class="card">
+    <div class="card-title">Compétences académiques</div>
+    <div class="bloc">
+      <div class="bloc-title">Analyse Statistique &amp; Modélisation</div>
+      <div class="bloc-content">Analyse statistique, modèles linéaires, tests, analyses prédictives, sondages</div>
     </div>
-
-
-    <div class="competence-card">
-        <h3>Compétences académiques</h3>
-
-        <p><b>Analyse Statistique & Modélisation :</b><br>
-        Analyse statistique, modèles linéaires, tests, analyses prédictives, sondages</p>
-
-        <p><b>Programmation & Traitement des Données :</b><br>
-        Programmation statistique, automatisation, nettoyage, workflows, qualité</p>
-
-        <p><b>Base de Données & Gestion des Données :</b><br>
-        Requêtage, base de données, datawarehouse, pipelines</p>
-
-        <p><b>Visualisation, Reporting & Gouvernance :</b><br>
-        Dataviz, dashboards, reporting, rédaction, RGPD</p>
+    <div class="bloc">
+      <div class="bloc-title">Programmation &amp; Traitement des Données</div>
+      <div class="bloc-content">Programmation statistique, automatisation, nettoyage, workflows, qualité</div>
     </div>
-
-
-    <div class="competence-card">
-        <h3>Compétences en Informatique</h3>
-
-        <p><b>Outils & Logiciels :</b><br>
-        Power BI, Excel, Spyder, Power Query, Rstudio, Power Point, Canva</p>
-
-        <p><b>Programmation & Data Science :</b><br>
-        Python(Numpy, Pandas, MatplotLib, Seaborn, Scipi & Scikit Learn) R(ggplot2, Shiny, Tidyverse), SAS + Macros, DAX, SQL, HTML, CSS</p>
+    <div class="bloc">
+      <div class="bloc-title">Base de Données &amp; Gestion des Données</div>
+      <div class="bloc-content">Requêtage, base de données, datawarehouse, pipelines</div>
     </div>
-
-
-</section>
-
-    </body>
-
+    <div class="bloc">
+      <div class="bloc-title">Visualisation, Reporting &amp; Gouvernance</div>
+      <div class="bloc-content">Dataviz, dashboards, reporting, rédaction, RGPD</div>
+    </div>
+  </div>
+ 
+  <div class="card">
+    <div class="card-title">Compétences en Informatique</div>
+    <div class="bloc">
+      <div class="bloc-title">Outils &amp; Logiciels</div>
+      <div class="bloc-content">Power BI, Excel, Spyder, Power Query, RStudio, PowerPoint, Canva</div>
+    </div>
+    <div class="bloc">
+      <div class="bloc-title">Programmation &amp; Data Science</div>
+      <div class="bloc-content">
+        <span class="code-tag">Python</span> — Numpy, Pandas, Matplotlib, Seaborn, Scipy, Scikit-learn<br><br>
+        <span class="code-tag">R</span> — ggplot2, Shiny, Tidyverse<br><br>
+        <span class="code-tag">SAS</span> + Macros &nbsp;·&nbsp; <span class="code-tag">DAX</span> &nbsp;·&nbsp; <span class="code-tag">SQL</span> &nbsp;·&nbsp; <span class="code-tag">HTML</span> &nbsp;·&nbsp; <span class="code-tag">CSS</span>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+ 
+<footer>© 2026 – Portfolio Anthony El Dahdah · BUT Science des Données · IUT Paris Rives de Seine</footer>
+</body>
 </html>
-
-
-
-
-

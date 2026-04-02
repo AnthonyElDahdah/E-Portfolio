@@ -81,11 +81,30 @@
       max-width: 560px; line-height: 1.7;
     }
  
-    /* ── Projects container ── */
-    .projects {
+    /* ── Contenu principal ── */
+    .content {
       max-width: 960px; margin: 0 auto;
-      padding: 2.5rem 2.5rem;
-      display: flex; flex-direction: column; gap: 2rem;
+      padding: 0 2.5rem 3rem;
+      display: flex; flex-direction: column; gap: 3rem;
+    }
+ 
+    /* ── Sous-rubriques ── */
+    .rubrique { display: flex; flex-direction: column; gap: 1.5rem; }
+ 
+    .rubrique-header {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .rubrique-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: var(--dark);
+      letter-spacing: -0.01em; white-space: nowrap;
+    }
+    .rubrique-line {
+      flex: 1; height: 2px; background: var(--border); border-radius: 2px;
+    }
+    .rubrique-count {
+      font-family: 'Fira Code', monospace; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em; white-space: nowrap;
     }
  
     /* ── Stage label row ── */
@@ -101,7 +120,7 @@
       padding: 0.2rem 0.65rem; border-radius: 100px;
     }
  
-    /* ── Stage card (internship) ── */
+    /* ── Stage card ── */
     .stage-card {
       border: 1px solid var(--border); border-left: 4px solid var(--blue);
       border-radius: 0 8px 8px 0; overflow: hidden; background: var(--card);
@@ -114,8 +133,10 @@
     .stage-logo {
       flex-shrink: 0; width: 46px; height: 46px; border-radius: 8px;
       background: #fff; border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px; overflow: hidden;
     }
+    .stage-logo img { width: 100%; height: 100%; object-fit: contain; }
     .stage-head-text { flex: 1; }
     .stage-company-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
     .stage-company {
@@ -133,7 +154,6 @@
       margin-bottom: 0.75rem; flex-wrap: wrap;
     }
     .stage-date { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--blue); }
-    .stage-ref { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--muted); opacity: 0.6; }
     .stage-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .stage-tool {
       font-family: 'Fira Code', monospace; font-size: 0.7rem;
@@ -201,7 +221,7 @@
       nav { padding: 0 1.25rem; }
       .nav-links a { padding: 0.25rem 0.5rem; font-size: 0.76rem; }
       .page-header { padding: 2.5rem 1.5rem; }
-      .projects { padding: 2rem 1.5rem; }
+      .content { padding: 0 1.5rem 2.5rem; }
     }
   </style>
 </head>
@@ -222,143 +242,162 @@
   <div class="page-header-inner">
     <div class="page-eyebrow">Projets · Missions · Réalisations</div>
     <h1 class="page-title">Mes <span>Expériences</span></h1>
-    <p class="page-intro">4 expériences menées sur données réelles, structurées autour d'un problème concret, d'une solution mise en œuvre et d'un résultat livré.</p>
+    <p class="page-intro">Un stage à venir et 3 projets menés sur données réelles, chacun structuré autour d'un problème concret, d'une solution mise en œuvre et d'un résultat livré.</p>
   </div>
 </div>
  
-<div class="projects">
+<div class="content">
  
-  <!-- Stage Eiffage -->
-  <div>
-    <div class="stage-label-row">
-      <span class="stage-label-text">Stage · Expérience professionnelle</span>
-      <span class="stage-badge">À venir · Avril 2026</span>
+  <!-- ══════════════════════════════════════════
+       SOUS-RUBRIQUE : EXPÉRIENCE PROFESSIONNELLE
+  ═══════════════════════════════════════════ -->
+  <div class="rubrique">
+    <div class="rubrique-header">
+      <h2 class="rubrique-title">Expérience professionnelle</h2>
+      <div class="rubrique-line"></div>
+      <span class="rubrique-count">1 stage</span>
     </div>
-    <div class="stage-card">
-      <div class="stage-head">
-      <div class="stage-logo">
-        <img src="image/logo-eiffage.jpg"
-             alt="Logo Eiffage"
-             width="30"
-             height="30">
+ 
+    <div>
+      <div class="stage-label-row">
+        <span class="stage-label-text">Stage · En entreprise</span>
+        <span class="stage-badge">À venir · Avril 2026</span>
       </div>
-        <div class="stage-head-text">
-          <div class="stage-company-row">
-            <span class="stage-company">Eiffage Services</span>
-            <span class="stage-location">· Vélizy-Villacoublay, Yvelines (Siège social)</span>
+      <div class="stage-card">
+        <div class="stage-head">
+          <div class="stage-logo">
+            <img src="image/logo-eiffage.jpg" alt="Logo Eiffage"/>
           </div>
-          <div class="stage-title">Migration de données pour mise en service de logiciel</div>
-          <div class="stage-meta-row">
-            <span class="stage-date">Avril 2026 → Juillet 2026</span>
-          </div>
-          <div class="stage-tools">
-            <span class="stage-tool">Excel</span>
-            <span class="stage-tool">SQL</span>
-            <span class="stage-tool">Bases de données</span>
-            <span class="stage-tool">ETL / Transformation</span>
-            <span class="stage-tool">Tests d'intégration</span>
+          <div class="stage-head-text">
+            <div class="stage-company-row">
+              <span class="stage-company">Eiffage Services</span>
+              <span class="stage-location">· Vélizy-Villacoublay, Yvelines (Siège social)</span>
+            </div>
+            <div class="stage-title">Migration de données pour mise en service de logiciel</div>
+            <div class="stage-meta-row">
+              <span class="stage-date">Avril 2026 → Juillet 2026</span>
+            </div>
+            <div class="stage-tools">
+              <span class="stage-tool">Excel</span>
+              <span class="stage-tool">SQL</span>
+              <span class="stage-tool">Bases de données</span>
+              <span class="stage-tool">ETL / Transformation</span>
+              <span class="stage-tool">Tests d'intégration</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="stage-missions">
-        <div class="stage-mission">
-          <div class="stage-mission-label">Contexte</div>
-          <div class="stage-mission-text">Déploiement d'un nouveau logiciel de gestion du Gros Entretien Renouvellement (GER) au sein d'Eiffage Services, dans le cadre de contrats PPP et MGP de long terme (hôpitaux, prisons, universités…).</div>
-        </div>
-        <div class="stage-mission">
-          <div class="stage-mission-label">Missions</div>
-          <div class="stage-mission-text">Analyse des structures de données du logiciel GER, identification des sources existantes (tableurs, bases de données), définition des règles de transformation et création des fichiers de reprise sous Excel.</div>
-        </div>
-        <div class="stage-mission">
-          <div class="stage-mission-label">Attendu</div>
-          <div class="stage-mission-text">Tests unitaires et d'intégration des fichiers de reprise. Validation de l'intégrité et de la pertinence des données avec les équipes métiers pour garantir une exploitation optimale du nouvel outil.</div>
+        <div class="stage-missions">
+          <div class="stage-mission">
+            <div class="stage-mission-label">Contexte</div>
+            <div class="stage-mission-text">Déploiement d'un nouveau logiciel de gestion du Gros Entretien Renouvellement (GER) au sein d'Eiffage Services, dans le cadre de contrats PPP et MGP de long terme (hôpitaux, prisons, universités…).</div>
+          </div>
+          <div class="stage-mission">
+            <div class="stage-mission-label">Missions</div>
+            <div class="stage-mission-text">Analyse des structures de données du logiciel GER, identification des sources existantes (tableurs, bases de données), définition des règles de transformation et création des fichiers de reprise sous Excel.</div>
+          </div>
+          <div class="stage-mission">
+            <div class="stage-mission-label">Attendu</div>
+            <div class="stage-mission-text">Tests unitaires et d'intégration des fichiers de reprise. Validation de l'intégrité et de la pertinence des données avec les équipes métiers pour garantir une exploitation optimale du nouvel outil.</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
  
-  <!-- Projet 01 -->
-  <div class="project">
-    <div class="project-head">
-      <div class="project-num">01</div>
-      <div class="project-head-text">
-        <div class="project-title">Reporting automatisé — Caisses d'Allocations Familiales</div>
-        <div class="project-subtitle">Extraction, transformation et visualisation d'indicateurs nationaux</div>
-        <div class="project-tools">
-          <span class="tool">SAS</span><span class="tool">Excel</span><span class="tool">Power BI</span>
-        </div>
-      </div>
+  <!-- ══════════════════════════════════════════
+       SOUS-RUBRIQUE : PROJETS ACADÉMIQUES
+  ═══════════════════════════════════════════ -->
+  <div class="rubrique">
+    <div class="rubrique-header">
+      <h2 class="rubrique-title">Projets académiques</h2>
+      <div class="rubrique-line"></div>
+      <span class="rubrique-count">3 projets</span>
     </div>
-    <div class="missions">
-      <div class="mission">
-        <div class="mission-label">Problème</div>
-        <div class="mission-text">Produire des indicateurs fiables et reproductibles à partir de données CAF multi-sources pour l'ensemble du territoire, avec traçabilité et cohérence garanties.</div>
-      </div>
-      <div class="mission">
-        <div class="mission-label">Solution</div>
-        <div class="mission-text">Scripts SAS d'extraction et nettoyage, pipeline automatisé de structuration des données, vérifications systématiques de cohérence à chaque étape.</div>
-      </div>
-      <div class="mission">
-        <div class="mission-label">Résultat</div>
-        <div class="mission-text">Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser.</div>
-      </div>
-    </div>
-  </div>
  
-  <!-- Projet 02 -->
-  <div class="project">
-    <div class="project-head">
-      <div class="project-num">02</div>
-      <div class="project-head-text">
-        <div class="project-title">Analyse des pratiques culturelles — Méthodes de sondage INSEE</div>
-        <div class="project-subtitle">Redressement statistique · Calage sur marges · Analyse sociodémographique</div>
-        <div class="project-tools">
-          <span class="tool">SAS</span><span class="tool">Macro Calmar</span><span class="tool">Excel</span>
+    <!-- Projet 01 -->
+    <div class="project">
+      <div class="project-head">
+        <div class="project-num">01</div>
+        <div class="project-head-text">
+          <div class="project-title">Reporting automatisé — Caisses d'Allocations Familiales</div>
+          <div class="project-subtitle">Extraction, transformation et visualisation d'indicateurs nationaux</div>
+          <div class="project-tools">
+            <span class="tool">SAS</span><span class="tool">Excel</span><span class="tool">Power BI</span>
+          </div>
+        </div>
+      </div>
+      <div class="missions">
+        <div class="mission">
+          <div class="mission-label">Problème</div>
+          <div class="mission-text">Produire des indicateurs fiables et reproductibles à partir de données CAF multi-sources pour l'ensemble du territoire, avec traçabilité et cohérence garanties.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Solution</div>
+          <div class="mission-text">Scripts SAS d'extraction et nettoyage, pipeline automatisé de structuration des données, vérifications systématiques de cohérence à chaque étape.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Résultat</div>
+          <div class="mission-text">Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser.</div>
         </div>
       </div>
     </div>
-    <div class="missions">
-      <div class="mission">
-        <div class="mission-label">Problème</div>
-        <div class="mission-text">Exploiter une enquête sur les pratiques culturelles d'étudiants en corrigeant les biais de non-réponse pour obtenir un échantillon représentatif.</div>
-      </div>
-      <div class="mission">
-        <div class="mission-label">Solution</div>
-        <div class="mission-text">Application de la macro Calmar INSEE pour le redressement et le calage sur marges selon les variables clés. Analyse sous Excel avec tableaux et graphiques segmentés.</div>
-      </div>
-      <div class="mission">
-        <div class="mission-label">Résultat</div>
-        <div class="mission-text">Identification de tendances et profils types. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales.</div>
-      </div>
-    </div>
-  </div>
  
-  <!-- Projet 03 -->
-  <div class="project">
-    <div class="project-head">
-      <div class="project-num">03</div>
-      <div class="project-head-text">
-        <div class="project-title">Dashboard interactif — Application R / Shiny</div>
-        <div class="project-subtitle">Conception et déploiement d'une interface d'exploration de données</div>
-        <div class="project-tools">
-          <span class="tool">R</span><span class="tool">Shiny</span><span class="tool">ggplot2</span><span class="tool">dplyr</span><span class="tool">tidyr</span><span class="tool">readxl</span>
+    <!-- Projet 02 -->
+    <div class="project">
+      <div class="project-head">
+        <div class="project-num">02</div>
+        <div class="project-head-text">
+          <div class="project-title">Analyse des pratiques culturelles — Méthodes de sondage INSEE</div>
+          <div class="project-subtitle">Redressement statistique · Calage sur marges · Analyse sociodémographique</div>
+          <div class="project-tools">
+            <span class="tool">SAS</span><span class="tool">Macro Calmar</span><span class="tool">Excel</span>
+          </div>
+        </div>
+      </div>
+      <div class="missions">
+        <div class="mission">
+          <div class="mission-label">Problème</div>
+          <div class="mission-text">Exploiter une enquête sur les pratiques culturelles d'étudiants en corrigeant les biais de non-réponse pour obtenir un échantillon représentatif.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Solution</div>
+          <div class="mission-text">Application de la macro Calmar INSEE pour le redressement et le calage sur marges selon les variables clés. Analyse sous Excel avec tableaux et graphiques segmentés.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Résultat</div>
+          <div class="mission-text">Identification de tendances et profils types. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales.</div>
         </div>
       </div>
     </div>
-    <div class="missions">
-      <div class="mission">
-        <div class="mission-label">Problème</div>
-        <div class="mission-text">Rendre un jeu de données complexe explorable de façon interactive par des utilisateurs non-techniques, tout en garantissant la rigueur des analyses.</div>
+ 
+    <!-- Projet 03 -->
+    <div class="project">
+      <div class="project-head">
+        <div class="project-num">03</div>
+        <div class="project-head-text">
+          <div class="project-title">Dashboard interactif — Application R / Shiny</div>
+          <div class="project-subtitle">Conception et déploiement d'une interface d'exploration de données</div>
+          <div class="project-tools">
+            <span class="tool">R</span><span class="tool">Shiny</span><span class="tool">ggplot2</span><span class="tool">dplyr</span><span class="tool">tidyr</span><span class="tool">readxl</span>
+          </div>
+        </div>
       </div>
-      <div class="mission">
-        <div class="mission-label">Solution</div>
-        <div class="mission-text">Nettoyage complet via dplyr, tidyr et readxl. Visualisations dynamiques avec ggplot2. Interface Shiny avec filtres, modules et mises à jour automatiques.</div>
-      </div>
-      <div class="mission">
-        <div class="mission-label">Résultat</div>
-        <div class="mission-text">Application déployée, accessible et performante permettant une exploration autonome des données sans connaissance technique préalable.</div>
+      <div class="missions">
+        <div class="mission">
+          <div class="mission-label">Problème</div>
+          <div class="mission-text">Rendre un jeu de données complexe explorable de façon interactive par des utilisateurs non-techniques, tout en garantissant la rigueur des analyses.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Solution</div>
+          <div class="mission-text">Nettoyage complet via dplyr, tidyr et readxl. Visualisations dynamiques avec ggplot2. Interface Shiny avec filtres, modules et mises à jour automatiques.</div>
+        </div>
+        <div class="mission">
+          <div class="mission-label">Résultat</div>
+          <div class="mission-text">Application déployée, accessible et performante permettant une exploration autonome des données sans connaissance technique préalable.</div>
+        </div>
       </div>
     </div>
+ 
   </div>
  
 </div>

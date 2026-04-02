@@ -77,51 +77,118 @@
     }
     .page-title span { color: var(--blue); }
  
-    /* ── Grille de cartes ── */
-    .cards-wrap {
+    /* ── Contenu principal ── */
+    .content {
       max-width: 960px; margin: 0 auto;
-      padding: 0 2.5rem 2.5rem;
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; align-items: start;
+      padding: 0 2.5rem 3rem;
+      display: flex; flex-direction: column; gap: 2rem;
     }
  
-    .card {
+    /* ── Rubrique header (même style qu'expériences) ── */
+    .rubrique-header {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .rubrique-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: var(--dark);
+      letter-spacing: -0.01em; white-space: nowrap;
+    }
+    .rubrique-line {
+      flex: 1; height: 2px; background: var(--border); border-radius: 2px;
+    }
+ 
+    /* ══════════════════════════
+       SECTION 1 — SAVOIR-ÊTRE
+       Rangée de pills centrées
+    ══════════════════════════ */
+    .savoir-pills {
+      display: flex; flex-wrap: wrap; gap: 0.65rem;
+    }
+    .savoir-pill {
+      display: flex; align-items: center; gap: 0.55rem;
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 8px; padding: 1.75rem;
-      position: relative; overflow: hidden;
-    }
-    .card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--blue);
-    }
-    .card-title {
-      font-family: 'Montserrat', sans-serif; font-size: 0.92rem;
-      font-weight: 700; color: var(--dark); margin-bottom: 1.25rem;
-    }
- 
-    /* Savoir-être */
-    .savoir-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .savoir-list li {
+      border-radius: 100px; padding: 0.45rem 1.1rem;
       font-size: 0.875rem; color: var(--dark);
-      display: flex; align-items: center; gap: 0.6rem;
     }
-    .savoir-list li::before {
-      content: ''; width: 6px; height: 6px;
+    .savoir-pill::before {
+      content: ''; width: 7px; height: 7px;
       border-radius: 50%; background: var(--blue); flex-shrink: 0;
     }
  
-    /* Blocs texte */
-    .bloc { margin-bottom: 1.1rem; }
-    .bloc:last-child { margin-bottom: 0; }
-    .bloc-title { font-size: 0.8rem; font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; }
-    .bloc-content { font-size: 0.835rem; color: var(--muted); line-height: 1.65; }
+    /* ══════════════════════════
+       SECTION 2 — COMPÉTENCES ACADÉMIQUES
+       4 cartes égales en 2x2
+    ══════════════════════════ */
+    .acad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .acad-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.4rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .acad-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--blue);
+    }
+    .acad-card-title {
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+      font-weight: 700; color: var(--dark); margin-bottom: 0.5rem;
+    }
+    .acad-card-content {
+      font-size: 0.835rem; color: var(--muted); line-height: 1.65;
+    }
  
-    /* Tags code */
+    /* ══════════════════════════
+       SECTION 3 — COMPÉTENCES INFORMATIQUES
+       2 colonnes : outils | langages
+    ══════════════════════════ */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1rem;
+    }
+    .info-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.4rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .info-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--blue);
+    }
+    .info-card-title {
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+      font-weight: 700; color: var(--dark); margin-bottom: 0.85rem;
+    }
+ 
+    /* Outils — pills simples */
+    .tool-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tool-pill {
+      font-size: 0.8rem; padding: 0.25rem 0.7rem;
+      border-radius: 5px; background: var(--gray);
+      border: 1px solid var(--border); color: var(--dark);
+    }
+ 
+    /* Langages — rangées avec code-tag + librairies */
+    .lang-rows { display: flex; flex-direction: column; gap: 0.85rem; }
+    .lang-row {
+      display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .lang-row-libs {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+    }
     .code-tag {
       font-family: 'Fira Code', monospace; font-size: 0.75rem;
       background: var(--blue-lt); color: var(--blue);
       border: 1px solid var(--blue-bd);
-      padding: 0.1rem 0.4rem; border-radius: 3px;
+      padding: 0.15rem 0.5rem; border-radius: 3px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .lang-divider {
+      height: 1px; background: var(--border); margin: 0.1rem 0;
     }
  
     /* ── Footer ── */
@@ -133,10 +200,12 @@
  
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .cards-wrap { grid-template-columns: 1fr; padding: 0 1.5rem 2rem; }
+      .acad-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
       nav { padding: 0 1.25rem; }
       .nav-links a { padding: 0.25rem 0.5rem; font-size: 0.76rem; }
       .page-header { padding: 2.5rem 1.5rem; }
+      .content { padding: 0 1.5rem 2.5rem; }
     }
   </style>
 </head>
@@ -160,51 +229,109 @@
   </div>
 </div>
  
-<div class="cards-wrap">
+<div class="content">
  
-  <div class="card">
-    <div class="card-title">Savoir-être</div>
-    <ul class="savoir-list">
-      <li>Sens du relationnel</li>
-      <li>Esprit d'équipe</li>
-      <li>Rigueur</li>
-      <li>Esprit d'analyse</li>
-    </ul>
-  </div>
- 
-  <div class="card">
-    <div class="card-title">Compétences académiques</div>
-    <div class="bloc">
-      <div class="bloc-title">Analyse Statistique &amp; Modélisation</div>
-      <div class="bloc-content">Analyse statistique, modèles linéaires, tests, analyses prédictives, sondages</div>
+  <!-- ══════════════════════════════════
+       SAVOIR-ÊTRE
+  ═══════════════════════════════════ -->
+  <div>
+    <div class="rubrique-header" style="margin-bottom:1rem;">
+      <h2 class="rubrique-title">Savoir-être</h2>
+      <div class="rubrique-line"></div>
     </div>
-    <div class="bloc">
-      <div class="bloc-title">Programmation &amp; Traitement des Données</div>
-      <div class="bloc-content">Programmation statistique, automatisation, nettoyage, workflows, qualité</div>
-    </div>
-    <div class="bloc">
-      <div class="bloc-title">Base de Données &amp; Gestion des Données</div>
-      <div class="bloc-content">Requêtage, base de données, datawarehouse, pipelines</div>
-    </div>
-    <div class="bloc">
-      <div class="bloc-title">Visualisation, Reporting &amp; Gouvernance</div>
-      <div class="bloc-content">Dataviz, dashboards, reporting, rédaction, RGPD</div>
+    <div class="savoir-pills">
+      <span class="savoir-pill">Sens du relationnel</span>
+      <span class="savoir-pill">Esprit d'équipe</span>
+      <span class="savoir-pill">Rigueur</span>
+      <span class="savoir-pill">Esprit d'analyse</span>
+      <span class="savoir-pill">Autonomie</span>
+      <span class="savoir-pill">Adaptabilité</span>
+      <span class="savoir-pill">Curiosité intellectuelle</span>
+      <span class="savoir-pill">Communication des résultats</span>
     </div>
   </div>
  
-  <div class="card">
-    <div class="card-title">Compétences en Informatique</div>
-    <div class="bloc">
-      <div class="bloc-title">Outils &amp; Logiciels</div>
-      <div class="bloc-content">Power BI, Excel, Spyder, Power Query, RStudio, PowerPoint, Canva</div>
+  <!-- ══════════════════════════════════
+       COMPÉTENCES ACADÉMIQUES
+  ═══════════════════════════════════ -->
+  <div>
+    <div class="rubrique-header" style="margin-bottom:1rem;">
+      <h2 class="rubrique-title">Compétences académiques</h2>
+      <div class="rubrique-line"></div>
     </div>
-    <div class="bloc">
-      <div class="bloc-title">Programmation &amp; Data Science</div>
-      <div class="bloc-content">
-        <span class="code-tag">Python</span> — Numpy, Pandas, Matplotlib, Seaborn, Scipy, Scikit-learn<br><br>
-        <span class="code-tag">R</span> — ggplot2, Shiny, Tidyverse<br><br>
-        <span class="code-tag">SAS</span> + Macros &nbsp;·&nbsp; <span class="code-tag">DAX</span> &nbsp;·&nbsp; <span class="code-tag">SQL</span> &nbsp;·&nbsp; <span class="code-tag">HTML</span> &nbsp;·&nbsp; <span class="code-tag">CSS</span>
+    <div class="acad-grid">
+      <div class="acad-card">
+        <div class="acad-card-title">Analyse Statistique &amp; Modélisation</div>
+        <div class="acad-card-content">Analyse statistique, modèles linéaires, tests d'hypothèses, analyses prédictives, méthodes de sondage</div>
       </div>
+      <div class="acad-card">
+        <div class="acad-card-title">Programmation &amp; Traitement des Données</div>
+        <div class="acad-card-content">Programmation statistique, automatisation, nettoyage de données, workflows, contrôle qualité</div>
+      </div>
+      <div class="acad-card">
+        <div class="acad-card-title">Base de Données &amp; Gestion des Données</div>
+        <div class="acad-card-content">Requêtage SQL, modélisation de bases de données, datawarehouse, pipelines ETL</div>
+      </div>
+      <div class="acad-card">
+        <div class="acad-card-title">Visualisation, Reporting &amp; Gouvernance</div>
+        <div class="acad-card-content">Dataviz, dashboards interactifs, reporting, communication scientifique, conformité RGPD</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ══════════════════════════════════
+       COMPÉTENCES INFORMATIQUES
+  ═══════════════════════════════════ -->
+  <div>
+    <div class="rubrique-header" style="margin-bottom:1rem;">
+      <h2 class="rubrique-title">Compétences informatiques</h2>
+      <div class="rubrique-line"></div>
+    </div>
+    <div class="info-grid">
+ 
+      <!-- Colonne gauche : outils -->
+      <div class="info-card">
+        <div class="info-card-title">Outils &amp; Logiciels</div>
+        <div class="tool-pills">
+          <span class="tool-pill">Power BI</span>
+          <span class="tool-pill">Excel</span>
+          <span class="tool-pill">Power Query</span>
+          <span class="tool-pill">RStudio</span>
+          <span class="tool-pill">Spyder</span>
+          <span class="tool-pill">PowerPoint</span>
+          <span class="tool-pill">Canva</span>
+          <span class="tool-pill">Access</span>
+        </div>
+      </div>
+ 
+      <!-- Colonne droite : langages -->
+      <div class="info-card">
+        <div class="info-card-title">Langages &amp; Librairies</div>
+        <div class="lang-rows">
+          <div class="lang-row">
+            <span class="code-tag">Python</span>
+            <span class="lang-row-libs">Numpy · Pandas · Matplotlib · Seaborn · Scipy · Scikit-learn</span>
+          </div>
+          <div class="lang-divider"></div>
+          <div class="lang-row">
+            <span class="code-tag">R</span>
+            <span class="lang-row-libs">ggplot2 · Shiny · Tidyverse · dplyr · tidyr · readxl</span>
+          </div>
+          <div class="lang-divider"></div>
+          <div class="lang-row">
+            <span class="code-tag">SAS</span>
+            <span class="lang-row-libs">Macros · Proc SQL · Calmar</span>
+          </div>
+          <div class="lang-divider"></div>
+          <div class="lang-row" style="flex-wrap:wrap; gap:0.4rem;">
+            <span class="code-tag">SQL</span>
+            <span class="code-tag">DAX</span>
+            <span class="code-tag">HTML</span>
+            <span class="code-tag">CSS</span>
+          </div>
+        </div>
+      </div>
+ 
     </div>
   </div>
  
@@ -213,4 +340,3 @@
 <footer>© 2026 – Portfolio Anthony El Dahdah · BUT Science des Données · IUT Paris Rives de Seine</footer>
 </body>
 </html>
- 

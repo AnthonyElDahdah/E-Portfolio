@@ -12,23 +12,34 @@
       --blue-dk: #1558b0;
       --blue-lt: #EAF1FD;
       --blue-bd: #C5D9F8;
-      --white:   #FFFFFF;
-      --gray:    #F8F9FA;
+      --card:    #FFFFFF;
+      --gray:    #EDEEF1;
       --border:  #E2E6EA;
       --muted:   #5F6368;
       --dark:    #1C2028;
     }
+ 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Open Sans', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; line-height: 1.75; }
+ 
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(160deg, #ffffff 0%, #edf0f7 55%, #e2e7f2 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+ 
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
     img { display: block; max-width: 100%; }
  
-    /* NAV */
+    /* ── Navigation ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--white); border-bottom: 2px solid var(--blue);
+      background: #ffffff;
+      border-bottom: 2px solid var(--blue);
       padding: 0 2.5rem; height: 58px;
       display: flex; align-items: center; justify-content: space-between;
     }
@@ -37,48 +48,51 @@
     .nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
     .nav-links a { font-size: 0.83rem; font-weight: 600; color: var(--muted); padding: 0.32rem 0.75rem; border-radius: 4px; }
     .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--blue-lt); text-decoration: none; }
-    .nav-cv { background: var(--blue) !important; color: var(--white) !important; margin-left: 0.5rem; font-weight: 600 !important; }
+    .nav-cv { background: var(--blue) !important; color: #fff !important; margin-left: 0.5rem; font-weight: 600 !important; }
     .nav-cv:hover { background: var(--blue-dk) !important; }
  
-    /* HERO fond sombre */
-.hero { background: linear-gradient(135deg, #0f3460 0%, #1558b0 55%, #1A73E8 100%); padding: 3.5rem 2.5rem; position: relative; overflow: hidden; }
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0f3460 0%, #1558b0 55%, #1A73E8 100%);
+      padding: 3.5rem 2.5rem; position: relative; overflow: hidden;
+    }
     .hero-inner {
       max-width: 960px; margin: 0 auto;
       display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center;
     }
     .hero-photo-wrap { position: relative; flex-shrink: 0; }
     .hero-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid var(--blue); }
-    .hero-dot { position: absolute; bottom: 6px; right: 6px; width: 18px; height: 18px; border-radius: 50%; background: #34A853; border: 3px solid var(--dark); }
+    .hero-dot { position: absolute; bottom: 6px; right: 6px; width: 18px; height: 18px; border-radius: 50%; background: #34A853; border: 3px solid #0f3460; }
     .hero-status {
       display: inline-flex; align-items: center; gap: 0.45rem;
       font-size: 0.74rem; font-weight: 600; color: #81c995;
       background: rgba(52,168,83,0.12); border: 1px solid rgba(52,168,83,0.25);
       padding: 0.18rem 0.65rem; border-radius: 100px; margin-bottom: 0.7rem;
     }
-    .hero-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--white); letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+    .hero-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: #fff; letter-spacing: -0.02em; margin-bottom: 0.25rem; }
     .hero-role { font-size: 0.88rem; color: rgba(255,255,255,0.45); margin-bottom: 1.1rem; }
     .hero-bio { font-size: 0.9rem; color: rgba(255,255,255,0.78); max-width: 560px; line-height: 1.8; margin-bottom: 1.4rem; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag { font-family: 'Fira Code', monospace; font-size: 0.7rem; padding: 0.25rem 0.65rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); }
     .tag.blue { border-color: rgba(26,115,232,0.5); color: #7ab8f5; background: rgba(26,115,232,0.12); }
  
-    /* CONTAINER */
+    /* ── Container et sections ── */
     .container { max-width: 960px; margin: 0 auto; padding: 0 2.5rem; }
     section { padding: 3rem 0; }
     section + section { border-top: 1px solid var(--border); }
     .section-label { font-family: 'Fira Code', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem; }
     .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
  
-    /* PROFIL */
+    /* ── Profil ── */
     .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .block-title { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem; }
     .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
     .info-list li { font-size: 0.875rem; display: flex; gap: 0.6rem; align-items: baseline; }
     .lbl { font-weight: 600; color: var(--muted); min-width: 76px; flex-shrink: 0; font-size: 0.8rem; }
  
-    /* FORMATION */
+    /* ── Formation ── */
     .formation-list { display: flex; flex-direction: column; gap: 0.85rem; }
-    .formation-card { background: var(--gray); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: 0 6px 6px 0; padding: 1.1rem 1.4rem; }
+    .formation-card { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: 0 6px 6px 0; padding: 1.1rem 1.4rem; }
     .formation-date { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--blue); margin-bottom: 0.25rem; }
     .formation-title { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
     .formation-sub { font-size: 0.82rem; color: var(--muted); }
@@ -86,22 +100,23 @@
     .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .pill { font-size: 0.78rem; font-weight: 500; padding: 0.28rem 0.75rem; border-radius: 100px; background: var(--blue-lt); border: 1px solid var(--blue-bd); color: var(--blue); }
  
-    /* SOFT SKILLS */
+    /* ── Soft skills ── */
     .soft-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-    .soft-pill { font-size: 0.82rem; font-weight: 500; padding: 0.3rem 0.85rem; border-radius: 100px; background: var(--gray); border: 1px solid var(--border); color: var(--dark); }
+    .soft-pill { font-size: 0.82rem; font-weight: 500; padding: 0.3rem 0.85rem; border-radius: 100px; background: var(--card); border: 1px solid var(--border); color: var(--dark); }
  
-    /* CENTRES D'INTÉRÊT */
+    /* ── Centres d'intérêt ── */
     .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .interest-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.25rem; background: var(--white); position: relative; overflow: hidden; }
+    .interest-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.25rem; background: var(--card); position: relative; overflow: hidden; }
     .interest-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
     .interest-icon { font-size: 1.6rem; margin-bottom: 0.65rem; }
     .interest-title { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; }
     .interest-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
     .interest-note { display: inline-block; margin-top: 0.75rem; font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--blue); }
  
-    /* FOOTER */
+    /* ── Footer ── */
     footer { background: var(--dark); color: rgba(255,255,255,0.3); text-align: center; padding: 1.4rem; font-size: 0.78rem; margin-top: 1rem; }
  
+    /* ── Responsive ── */
     @media (max-width: 720px) {
       .hero-inner { grid-template-columns: 1fr; }
       .profil-grid { grid-template-columns: 1fr; }

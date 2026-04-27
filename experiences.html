@@ -164,11 +164,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
+      align-items: start; /* FIX : évite le décalage/étirement des cartes */
     }
     .project-card {
       border-radius: 10px; overflow: hidden;
       background: var(--card); border: 1px solid var(--border);
       cursor: pointer; position: relative;
+      display: flex; flex-direction: column; /* FIX : structure correcte */
       transition: box-shadow 0.22s ease, transform 0.22s ease;
     }
     .project-card:hover {
@@ -176,24 +178,34 @@
       transform: translateY(-3px);
     }
 
-    /* Thumb : ratio adapté à chaque image */
+    /* Thumb */
     .project-thumb {
       position: relative; width: 100%; overflow: hidden;
       background: var(--gray);
+      flex-shrink: 0; /* FIX : ne pas laisser le thumb se compresser */
     }
-    /* Projet 01 — 2838×1350 → ratio ~47.6% */
+    /* Ratios par projet */
     .project-card[data-id="p1"] .project-thumb { padding-top: 47.6%; }
-    /* Projet 02 — 1930×1084 → ratio ~56.2% */
     .project-card[data-id="p2"] .project-thumb { padding-top: 56.2%; }
-    /* Projet 03 — 1456×642 → ratio ~44.1% */
     .project-card[data-id="p3"] .project-thumb { padding-top: 44.1%; }
-    /* Projets 04-06 — placeholder carré */
     .project-card[data-id="p4"] .project-thumb,
     .project-card[data-id="p5"] .project-thumb,
     .project-card[data-id="p6"] .project-thumb { padding-top: 56%; }
 
+    /* FIX images : z-index au-dessus du placeholder */
+    .project-thumb img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1; /* au-dessus du placeholder */
+      transition: transform 0.35s ease;
+    }
+    .project-card:hover .project-thumb img { transform: scale(1.04); }
+
+    /* FIX placeholder : z-index 0, derrière l'image */
     .project-thumb-placeholder {
       position: absolute; inset: 0;
+      z-index: 0; /* derrière l'image */
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 0.6rem;
       background: linear-gradient(135deg, var(--blue-lt) 0%, #dce8fb 100%);
@@ -203,15 +215,11 @@
       font-family: 'Fira Code', monospace; font-size: 0.65rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); opacity: 0.55;
     }
-    .project-thumb img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; transition: transform 0.35s ease;
-    }
-    .project-card:hover .project-thumb img { transform: scale(1.04); }
 
-    /* Overlay hover */
+    /* Overlay hover : z-index 2, au-dessus de l'image */
     .project-overlay {
       position: absolute; inset: 0;
+      z-index: 2;
       background: rgba(26, 115, 232, 0.88);
       display: flex; flex-direction: column;
       justify-content: center; align-items: flex-start;
@@ -233,6 +241,7 @@
       padding: 0.15rem 0.5rem; border-radius: 3px;
       background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #fff;
     }
+
     .project-info { padding: 0.9rem 1.1rem 1rem; border-top: 1px solid var(--border); }
     .project-card-num {
       font-family: 'Fira Code', monospace; font-size: 0.6rem;
@@ -249,9 +258,7 @@
       -webkit-box-orient: vertical; overflow: hidden;
     }
 
-    /* ══════════════════════════════════════
-       ── MODALE ──
-    ══════════════════════════════════════ */
+    /* ══ MODALE ══ */
     .modal-backdrop {
       position: fixed; inset: 0; z-index: 500;
       background: rgba(28, 32, 40, 0.55);
@@ -262,7 +269,6 @@
       transition: opacity 0.25s ease;
     }
     .modal-backdrop.open { opacity: 1; pointer-events: all; }
-
     .modal {
       background: var(--card); border-radius: 14px;
       width: 100%; max-width: 740px;
@@ -272,7 +278,6 @@
       transition: transform 0.3s cubic-bezier(.22,.68,0,1.15);
     }
     .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
-
     .modal-header {
       position: sticky; top: 0; z-index: 10;
       background: var(--card);
@@ -306,15 +311,9 @@
       margin-top: 2px;
     }
     .modal-close:hover { background: var(--gray); color: var(--dark); }
-
     .modal-body { padding: 0.25rem 1.75rem 2rem; }
-
-    .modal-section {
-      padding: 1.15rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .modal-section { padding: 1.15rem 0; border-bottom: 1px solid var(--border); }
     .modal-section:last-child { border-bottom: none; }
-
     .modal-section-label {
       display: flex; align-items: center; gap: 0.55rem;
       font-family: 'Fira Code', monospace; font-size: 0.65rem;
@@ -322,10 +321,8 @@
       color: var(--blue); font-weight: 500; margin-bottom: 0.55rem;
     }
     .label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-
     .modal-section-text { font-size: 0.875rem; color: var(--dark); line-height: 1.78; }
     .modal-section-text a { color: var(--blue); }
-
     .modal-competences { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.65rem; }
     .modal-competence-tag {
       font-family: 'Fira Code', monospace; font-size: 0.67rem;
@@ -444,10 +441,7 @@
       <!-- ── Projet 01 ── -->
       <div class="project-card" data-id="p1" onclick="openModal('p1')">
         <div class="project-thumb">
-          
-            
-            <img src="image/reporting_automatisé_dashboard_power_BI.jpg" alt="Reporting CAF"/>
-          
+          <img src="image/reporting_automatisé_dashboard_power_BI.jpg" alt="Reporting CAF"/>
           <div class="project-thumb-placeholder">
             <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="4" y="10" width="40" height="28" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
@@ -479,10 +473,7 @@
       <!-- ── Projet 02 ── -->
       <div class="project-card" data-id="p2" onclick="openModal('p2')">
         <div class="project-thumb">
-         
-            
-            <img src="image/sae_sondage.jpg" alt="Sondage INSEE"/>
-     
+          <img src="image/sae_sondage.jpg" alt="Sondage INSEE"/>
           <div class="project-thumb-placeholder">
             <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <circle cx="24" cy="24" r="16" stroke="#1A73E8" stroke-width="2.5"/>
@@ -513,9 +504,7 @@
       <!-- ── Projet 03 ── -->
       <div class="project-card" data-id="p3" onclick="openModal('p3')">
         <div class="project-thumb">
-          
-            <img src="image/dashboard_shiny.jpg" alt="Dashboard Shiny"/>
-          
+          <img src="image/dashboard_shiny.jpg" alt="Dashboard Shiny"/>
           <div class="project-thumb-placeholder">
             <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="6" y="8" width="36" height="26" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
@@ -656,101 +645,45 @@
 
 <script>
 const projects = {
-
-  /* ─────────────────── PROJET 01 ─────────────────── */
   p1: {
     num: 'Projet 01 · BUT2',
     title: "Reporting automatisé — Caisses d'Allocations Familiales",
     subtitle: "Extraction, transformation et visualisation d'indicateurs nationaux",
     tools: ['SAS', 'Excel', 'Power BI'],
     sections: [
-      {
-        label: 'Preuve',
-        text: '📎 À compléter — ajouter ici un lien vers le dashboard Power BI, une capture d\'écran du rendu final ou un extrait du code SAS.'
-      },
-      {
-        label: 'Contexte',
-        text: "Dans le cadre d'un projet SAE de BUT2, l'objectif était de produire des indicateurs fiables et reproductibles à partir de données multi-sources issues des Caisses d'Allocations Familiales (CAF) couvrant l'ensemble du territoire national. Les fichiers provenaient de sources hétérogènes nécessitant une harmonisation rigoureuse avant toute exploitation."
-      },
-      {
-        label: 'Objectifs & contraintes',
-        text: "Produire un reporting automatisé, traçable et cohérent à chaque mise à jour. Contraintes : garantir la reproductibilité du pipeline, assurer la cohérence des indicateurs à chaque étape de transformation, et livrer un dashboard lisible pour des destinataires non-techniques."
-      },
-      {
-        label: 'Montée en compétence',
-        text: '📝 À compléter — décrire les difficultés rencontrées (ex : gestion des données manquantes, automatisation des vérifications, prise en main de Power BI…) et ce que tu as appris en les surmontant. Compétences travaillées :',
-        competences: ['C1 — Traiter des données', 'C4 VCOD — Outil décisionnel']
-      },
-      {
-        label: 'Résultats obtenus',
-        text: "Pipeline SAS automatisé avec vérifications systématiques de cohérence à chaque étape. Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser."
-      }
+      { label: 'Preuve', text: "📎 À compléter — ajouter ici un lien vers le dashboard Power BI, une capture d'écran du rendu final ou un extrait du code SAS." },
+      { label: 'Contexte', text: "Dans le cadre d'un projet SAE de BUT2, l'objectif était de produire des indicateurs fiables et reproductibles à partir de données multi-sources issues des Caisses d'Allocations Familiales (CAF) couvrant l'ensemble du territoire national. Les fichiers provenaient de sources hétérogènes nécessitant une harmonisation rigoureuse avant toute exploitation." },
+      { label: 'Objectifs & contraintes', text: "Produire un reporting automatisé, traçable et cohérent à chaque mise à jour. Contraintes : garantir la reproductibilité du pipeline, assurer la cohérence des indicateurs à chaque étape de transformation, et livrer un dashboard lisible pour des destinataires non-techniques." },
+      { label: 'Montée en compétence', text: "📝 À compléter — décrire les difficultés rencontrées (ex : gestion des données manquantes, automatisation des vérifications, prise en main de Power BI…) et ce que tu as appris en les surmontant. Compétences travaillées :", competences: ['C1 — Traiter des données', 'C4 VCOD — Outil décisionnel'] },
+      { label: 'Résultats obtenus', text: "Pipeline SAS automatisé avec vérifications systématiques de cohérence à chaque étape. Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser." }
     ]
   },
-
-  /* ─────────────────── PROJET 02 ─────────────────── */
   p2: {
     num: 'Projet 02 · BUT2',
     title: "Analyse des pratiques culturelles — Méthodes de sondage INSEE",
     subtitle: "Redressement statistique · Calage sur marges · Analyse sociodémographique",
     tools: ['SAS', 'Macro Calmar', 'Excel'],
     sections: [
-      {
-        label: 'Preuve',
-        text: "📎 À compléter — ajouter ici un lien vers le rapport d'analyse, des captures des tableaux de résultats ou un extrait du code SAS avec la macro Calmar."
-      },
-      {
-        label: 'Contexte',
-        text: "Exploitation d'une enquête sur les pratiques culturelles d'étudiants. L'échantillon présentait des biais de non-réponse importants qui rendaient les résultats bruts non représentatifs de la population cible. Il fallait corriger ces biais avant toute analyse sociodémographique."
-      },
-      {
-        label: 'Objectifs & contraintes',
-        text: "Rendre l'échantillon statistiquement représentatif par calage sur marges selon des variables clés (âge, sexe, filière…). Contraintes : respecter les marges de référence INSEE, valider la convergence de la macro Calmar, et interpréter les résultats avec rigueur inférentielle."
-      },
-      {
-        label: 'Montée en compétence',
-        text: "📝 À compléter — décrire les difficultés (ex : comprendre le calage sur marges, interpréter les poids, distinguer analyse exploratoire et modélisation…) et ce que tu as appris. Compétences travaillées :",
-        competences: ['C2 — Analyser statistiquement', 'C3 — Valoriser une production']
-      },
-      {
-        label: 'Résultats obtenus',
-        text: "Échantillon redressé et représentatif. Identification de tendances et profils types dans les pratiques culturelles étudiantes. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales."
-      }
+      { label: 'Preuve', text: "📎 À compléter — ajouter ici un lien vers le rapport d'analyse, des captures des tableaux de résultats ou un extrait du code SAS avec la macro Calmar." },
+      { label: 'Contexte', text: "Exploitation d'une enquête sur les pratiques culturelles d'étudiants. L'échantillon présentait des biais de non-réponse importants qui rendaient les résultats bruts non représentatifs de la population cible. Il fallait corriger ces biais avant toute analyse sociodémographique." },
+      { label: 'Objectifs & contraintes', text: "Rendre l'échantillon statistiquement représentatif par calage sur marges selon des variables clés (âge, sexe, filière…). Contraintes : respecter les marges de référence INSEE, valider la convergence de la macro Calmar, et interpréter les résultats avec rigueur inférentielle." },
+      { label: 'Montée en compétence', text: "📝 À compléter — décrire les difficultés (ex : comprendre le calage sur marges, interpréter les poids, distinguer analyse exploratoire et modélisation…) et ce que tu as appris. Compétences travaillées :", competences: ['C2 — Analyser statistiquement', 'C3 — Valoriser une production'] },
+      { label: 'Résultats obtenus', text: "Échantillon redressé et représentatif. Identification de tendances et profils types dans les pratiques culturelles étudiantes. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales." }
     ]
   },
-
-  /* ─────────────────── PROJET 03 ─────────────────── */
   p3: {
     num: 'Projet 03 · BUT2',
     title: "Dashboard interactif — Santé & Territoires (R / Shiny)",
     subtitle: "Modélisation linéaire · Exploration interactive · Données de santé départementales",
     tools: ['R', 'Shiny', 'ggplot2', 'dplyr', 'tidyr', 'lm()'],
     sections: [
-      {
-        label: 'Preuve',
-        text: 'Application déployée et accessible en ligne : <a href="https://anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/" target="_blank">anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/</a>'
-      },
-      {
-        label: 'Contexte',
-        text: "Dans le cadre d'un projet de modélisation statistique en BUT2, j'ai conçu et déployé un dashboard R/Shiny intitulé « Santé & Territoires ». L'application explore les déterminants socio-économiques et environnementaux de l'espérance de vie à la naissance, à l'échelle des départements français. Les données mobilisées incluent des indicateurs de revenus, de chômage, de densité médicale et de pollution."
-      },
-      {
-        label: 'Objectifs & contraintes',
-        text: "Permettre à un utilisateur non-technique d'explorer un modèle de régression linéaire multiple de façon interactive : sélection des variables explicatives, lecture des diagnostics du modèle (R², résidus, VIF), et interprétation cartographique des résultats. Contraintes : garantir la rigueur statistique des sorties affichées, gérer la multicolinéarité entre variables, et maintenir une interface fluide malgré la complexité des calculs."
-      },
-      {
-        label: 'Montée en compétence',
-        text: "La principale difficulté a été de rendre les sorties statistiques d'un modèle linéaire lisibles par un public non-initié, sans les vider de leur rigueur. J'ai appris à structurer une app Shiny en modules réactifs indépendants pour éviter les rechargements inutiles, à diagnostiquer la multicolinéarité (VIF) et à choisir les variables pertinentes, et à coupler des graphiques ggplot2 avec des métriques numériques dans une interface cohérente. Ce projet m'a également permis de consolider ma capacité à m'adapter aux spécificités d'un domaine métier (données de santé publique). Compétences travaillées :",
-        competences: ['C2 — Analyser statistiquement', 'C4 EMS — Modéliser statistiquement', 'C3 — Valoriser une production']
-      },
-      {
-        label: 'Résultats obtenus',
-        text: "Application fonctionnelle déployée sur shinyapps.io. Le modèle final retenu explique une part significative de la variance de l'espérance de vie selon les variables sélectionnées. L'interface permet de visualiser les coefficients, les résidus, la carte des prédictions par département et les indicateurs de qualité du modèle (R², p-values). Le tout est accessible sans aucune connaissance en R."
-      }
+      { label: 'Preuve', text: 'Application déployée et accessible en ligne : <a href="https://anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/" target="_blank">anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/</a>' },
+      { label: 'Contexte', text: "Dans le cadre d'un projet de modélisation statistique en BUT2, j'ai conçu et déployé un dashboard R/Shiny intitulé « Santé & Territoires ». L'application explore les déterminants socio-économiques et environnementaux de l'espérance de vie à la naissance, à l'échelle des départements français. Les données mobilisées incluent des indicateurs de revenus, de chômage, de densité médicale et de pollution." },
+      { label: 'Objectifs & contraintes', text: "Permettre à un utilisateur non-technique d'explorer un modèle de régression linéaire multiple de façon interactive : sélection des variables explicatives, lecture des diagnostics du modèle (R², résidus, VIF), et interprétation cartographique des résultats. Contraintes : garantir la rigueur statistique des sorties affichées, gérer la multicolinéarité entre variables, et maintenir une interface fluide malgré la complexité des calculs." },
+      { label: 'Montée en compétence', text: "La principale difficulté a été de rendre les sorties statistiques d'un modèle linéaire lisibles par un public non-initié, sans les vider de leur rigueur. J'ai appris à structurer une app Shiny en modules réactifs indépendants pour éviter les rechargements inutiles, à diagnostiquer la multicolinéarité (VIF) et à choisir les variables pertinentes, et à coupler des graphiques ggplot2 avec des métriques numériques dans une interface cohérente. Ce projet m'a également permis de consolider ma capacité à m'adapter aux spécificités d'un domaine métier (données de santé publique). Compétences travaillées :", competences: ['C2 — Analyser statistiquement', 'C4 EMS — Modéliser statistiquement', 'C3 — Valoriser une production'] },
+      { label: 'Résultats obtenus', text: "Application fonctionnelle déployée sur shinyapps.io. Le modèle final retenu explique une part significative de la variance de l'espérance de vie selon les variables sélectionnées. L'interface permet de visualiser les coefficients, les résidus, la carte des prédictions par département et les indicateurs de qualité du modèle (R², p-values). Le tout est accessible sans aucune connaissance en R." }
     ]
   },
-
-  /* ─────────────────── PROJET 04 ─────────────────── */
   p4: {
     num: 'Projet 04 · BUT2',
     title: "Titre du projet 04 — À compléter",
@@ -764,8 +697,6 @@ const projects = {
       { label: 'Résultats obtenus', text: '📝 À compléter.' }
     ]
   },
-
-  /* ─────────────────── PROJET 05 ─────────────────── */
   p5: {
     num: 'Projet 05 · BUT2',
     title: "Titre du projet 05 — À compléter",
@@ -779,8 +710,6 @@ const projects = {
       { label: 'Résultats obtenus', text: '📝 À compléter.' }
     ]
   },
-
-  /* ─────────────────── PROJET 06 ─────────────────── */
   p6: {
     num: 'Projet 06 · Stage / BUT1',
     title: "Titre du projet 06 — À compléter",
@@ -794,18 +723,15 @@ const projects = {
       { label: 'Résultats obtenus', text: '📝 À compléter.' }
     ]
   }
-
 };
 
 function openModal(id) {
   const p = projects[id];
   if (!p) return;
-
   document.getElementById('modalNum').textContent = p.num;
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalSubtitle').textContent = p.subtitle;
   document.getElementById('modalTools').innerHTML = p.tools.map(t => `<span class="modal-tool">${t}</span>`).join('');
-
   document.getElementById('modalBody').innerHTML = p.sections.map(s => `
     <div class="modal-section">
       <div class="modal-section-label"><span class="label-dot"></span>${s.label}</div>
@@ -813,7 +739,6 @@ function openModal(id) {
       ${s.competences ? `<div class="modal-competences">${s.competences.map(c => `<span class="modal-competence-tag">${c}</span>`).join('')}</div>` : ''}
     </div>
   `).join('');
-
   document.getElementById('modalBackdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

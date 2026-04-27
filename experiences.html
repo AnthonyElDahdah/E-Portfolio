@@ -18,10 +18,10 @@
       --muted:   #5F6368;
       --dark:    #1C2028;
     }
- 
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
- 
+
     body {
       font-family: 'Open Sans', sans-serif;
       background: linear-gradient(160deg, #ffffff 0%, #edf0f7 55%, #e2e7f2 100%);
@@ -30,10 +30,10 @@
       font-size: 15px;
       line-height: 1.75;
     }
- 
+
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
- 
+
     /* ── Navigation ── */
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -61,7 +61,7 @@
       margin-left: 0.5rem; font-weight: 600 !important;
     }
     .nav-cv:hover { background: var(--blue-dk) !important; }
- 
+
     /* ── Page header ── */
     .page-header { padding: 3rem 2.5rem; }
     .page-header-inner { max-width: 960px; margin: 0 auto; }
@@ -80,34 +80,29 @@
       font-size: 0.88rem; color: var(--muted);
       max-width: 560px; line-height: 1.7;
     }
- 
+
     /* ── Contenu principal ── */
     .content {
       max-width: 960px; margin: 0 auto;
       padding: 0 2.5rem 3rem;
       display: flex; flex-direction: column; gap: 3rem;
     }
- 
+
     /* ── Sous-rubriques ── */
     .rubrique { display: flex; flex-direction: column; gap: 1.5rem; }
- 
-    .rubrique-header {
-      display: flex; align-items: center; gap: 1rem;
-    }
+    .rubrique-header { display: flex; align-items: center; gap: 1rem; }
     .rubrique-title {
       font-family: 'Montserrat', sans-serif; font-weight: 800;
       font-size: 1.05rem; color: var(--dark);
       letter-spacing: -0.01em; white-space: nowrap;
     }
-    .rubrique-line {
-      flex: 1; height: 2px; background: var(--border); border-radius: 2px;
-    }
+    .rubrique-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
     .rubrique-count {
       font-family: 'Fira Code', monospace; font-size: 0.65rem;
       color: var(--muted); letter-spacing: 0.08em; white-space: nowrap;
     }
- 
-    /* ── Stage label row ── */
+
+    /* ── Stage ── */
     .stage-label-row { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.75rem; }
     .stage-label-text {
       font-family: 'Fira Code', monospace; font-size: 0.68rem;
@@ -119,8 +114,6 @@
       color: #fff; background: var(--blue);
       padding: 0.2rem 0.65rem; border-radius: 100px;
     }
- 
-    /* ── Stage card ── */
     .stage-card {
       border: 1px solid var(--border); border-left: 4px solid var(--blue);
       border-radius: 0 8px 8px 0; overflow: hidden; background: var(--card);
@@ -141,18 +134,14 @@
     .stage-company-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
     .stage-company {
       font-family: 'Fira Code', monospace; font-size: 0.68rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--blue); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); font-weight: 500;
     }
     .stage-location { font-family: 'Fira Code', monospace; font-size: 0.68rem; color: var(--muted); }
     .stage-title {
       font-family: 'Montserrat', sans-serif; font-size: 1rem;
       font-weight: 700; color: var(--dark); margin-bottom: 0.25rem;
     }
-    .stage-meta-row {
-      display: flex; align-items: center; gap: 1rem;
-      margin-bottom: 0.75rem; flex-wrap: wrap;
-    }
+    .stage-meta-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
     .stage-date { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--blue); }
     .stage-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .stage-tool {
@@ -169,64 +158,194 @@
       color: var(--blue); margin-bottom: 0.45rem; font-weight: 500;
     }
     .stage-mission-text { font-size: 0.845rem; color: var(--dark); line-height: 1.7; }
- 
-    /* ── Project cards ── */
-    .project { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card); }
-    .project-head {
-      background: var(--gray); padding: 1.4rem 1.75rem;
+
+    /* ── Grille projets ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .project-card {
+      border-radius: 10px; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: box-shadow 0.22s ease, transform 0.22s ease;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(26,115,232,0.13);
+      transform: translateY(-3px);
+    }
+    .project-thumb {
+      position: relative; width: 100%; padding-top: 72%; overflow: hidden;
+      background: var(--gray);
+    }
+    .project-thumb-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.6rem;
+      background: linear-gradient(135deg, var(--blue-lt) 0%, #dce8fb 100%);
+    }
+    .project-thumb-placeholder .ph-icon { width: 48px; height: 48px; opacity: 0.35; }
+    .project-thumb-placeholder .ph-label {
+      font-family: 'Fira Code', monospace; font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); opacity: 0.55;
+    }
+    .project-thumb img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: transform 0.35s ease;
+    }
+    .project-card:hover .project-thumb img { transform: scale(1.04); }
+
+    /* Overlay hover */
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26, 115, 232, 0.88);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 1.25rem 1.4rem;
+      opacity: 0; transition: opacity 0.25s ease;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .overlay-hint {
+      font-family: 'Fira Code', monospace; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .overlay-hint svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .overlay-desc { font-size: 0.82rem; color: #fff; line-height: 1.6; margin-bottom: 0.9rem; }
+    .overlay-tools { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .overlay-tool {
+      font-family: 'Fira Code', monospace; font-size: 0.62rem;
+      padding: 0.15rem 0.5rem; border-radius: 3px;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #fff;
+    }
+    .project-info { padding: 0.9rem 1.1rem 1rem; border-top: 1px solid var(--border); }
+    .project-card-num {
+      font-family: 'Fira Code', monospace; font-size: 0.6rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 0.25rem; opacity: 0.75;
+    }
+    .project-card-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.87rem; color: var(--dark); line-height: 1.35; margin-bottom: 0.3rem;
+    }
+    .project-card-preview {
+      font-size: 0.775rem; color: var(--muted); line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       ── MODALE ──
+    ══════════════════════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(28, 32, 40, 0.55);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--card); border-radius: 14px;
+      width: 100%; max-width: 740px;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(26,115,232,0.18), 0 4px 16px rgba(0,0,0,0.12);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(.22,.68,0,1.15);
+    }
+    .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
+
+    /* Header modale */
+    .modal-header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--card);
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 1.25rem;
+      padding: 1.4rem 1.75rem 1.2rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
     }
-    .project-num {
+    .modal-header-left { flex: 1; }
+    .modal-num {
+      font-family: 'Fira Code', monospace; font-size: 0.65rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 0.3rem;
+    }
+    .modal-title {
       font-family: 'Montserrat', sans-serif; font-weight: 800;
-      font-size: 1.6rem; color: var(--blue); opacity: 0.25;
-      line-height: 1; flex-shrink: 0; margin-top: 2px;
+      font-size: 1.1rem; color: var(--dark); line-height: 1.3; margin-bottom: 0.35rem;
     }
-    .project-head-text { flex: 1; }
-    .project-title {
-      font-family: 'Montserrat', sans-serif; font-size: 1rem;
-      font-weight: 700; color: var(--dark); margin-bottom: 0.25rem;
-    }
-    .project-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.7rem; }
-    .project-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    .tool {
-      font-family: 'Fira Code', monospace; font-size: 0.7rem;
+    .modal-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .modal-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .modal-tool {
+      font-family: 'Fira Code', monospace; font-size: 0.68rem;
       padding: 0.18rem 0.55rem; border-radius: 3px;
       background: var(--blue-lt); border: 1px solid var(--blue-bd); color: var(--blue);
     }
-    .missions { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .mission { padding: 1.25rem 1.5rem; border-right: 1px solid var(--border); }
-    .mission:last-child { border-right: none; }
-    .mission-label {
-      font-family: 'Fira Code', monospace; font-size: 0.65rem;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--blue); margin-bottom: 0.45rem; font-weight: 500;
+    .modal-close {
+      flex-shrink: 0; width: 34px; height: 34px;
+      border: 1px solid var(--border); border-radius: 50%;
+      background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); transition: background 0.15s, color 0.15s;
+      margin-top: 2px;
     }
-    .mission-text { font-size: 0.845rem; color: var(--dark); line-height: 1.7; }
- 
+    .modal-close:hover { background: var(--gray); color: var(--dark); }
+
+    /* Body modale */
+    .modal-body { padding: 0.25rem 1.75rem 2rem; }
+
+    .modal-section {
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-section:last-child { border-bottom: none; }
+
+    .modal-section-label {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-family: 'Fira Code', monospace; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--blue); font-weight: 500; margin-bottom: 0.55rem;
+    }
+    .label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+    .modal-section-text { font-size: 0.875rem; color: var(--dark); line-height: 1.78; }
+
+    .modal-competences { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.65rem; }
+    .modal-competence-tag {
+      font-family: 'Fira Code', monospace; font-size: 0.67rem;
+      padding: 0.25rem 0.75rem; border-radius: 100px;
+      background: var(--dark); color: #fff; letter-spacing: 0.05em;
+    }
+
     /* ── Footer ── */
     footer {
       background: var(--dark); color: rgba(255,255,255,0.3);
       text-align: center; padding: 1.4rem;
       font-size: 0.78rem; margin-top: 1rem;
     }
- 
+
     /* ── Responsive ── */
+    @media (max-width: 860px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) {
-      .stage-missions, .missions { grid-template-columns: 1fr; }
+      .stage-missions { grid-template-columns: 1fr; }
       .stage-mission { border-right: none; border-bottom: 1px solid var(--border); }
       .stage-mission:last-child { border-bottom: none; }
-      .mission { border-right: none; border-bottom: 1px solid var(--border); }
-      .mission:last-child { border-bottom: none; }
       nav { padding: 0 1.25rem; }
       .nav-links a { padding: 0.25rem 0.5rem; font-size: 0.76rem; }
       .page-header { padding: 2.5rem 1.5rem; }
       .content { padding: 0 1.5rem 2.5rem; }
+      .modal-header { padding: 1.2rem 1.25rem 1rem; }
+      .modal-body { padding: 0.25rem 1.25rem 1.75rem; }
     }
+    @media (max-width: 520px) { .projects-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
- 
+
 <nav>
   <a href="index.html" class="nav-brand">Anthony El Dahdah</a>
   <ul class="nav-links">
@@ -237,7 +356,7 @@
     <li><a href="CV_Anthony_EL_DAHDAH.pdf" target="_blank" class="nav-cv">CV ↓</a></li>
   </ul>
 </nav>
- 
+
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-eyebrow">Projets · Missions · Réalisations</div>
@@ -245,19 +364,16 @@
     <p class="page-intro">Un stage à venir et 3 projets menés sur données réelles, chacun structuré autour d'un problème concret, d'une solution mise en œuvre et d'un résultat livré.</p>
   </div>
 </div>
- 
+
 <div class="content">
- 
-  <!-- ══════════════════════════════════════════
-       SOUS-RUBRIQUE : EXPÉRIENCE PROFESSIONNELLE
-  ═══════════════════════════════════════════ -->
+
+  <!-- EXPÉRIENCE PROFESSIONNELLE -->
   <div class="rubrique">
     <div class="rubrique-header">
       <h2 class="rubrique-title">Expérience professionnelle</h2>
       <div class="rubrique-line"></div>
       <span class="rubrique-count">1 stage</span>
     </div>
- 
     <div>
       <div class="stage-label-row">
         <span class="stage-label-text">Stage · En entreprise</span>
@@ -302,105 +418,261 @@
       </div>
     </div>
   </div>
- 
-  <!-- ══════════════════════════════════════════
-       SOUS-RUBRIQUE : PROJETS ACADÉMIQUES
-  ═══════════════════════════════════════════ -->
+
+  <!-- PROJETS ACADÉMIQUES -->
   <div class="rubrique">
     <div class="rubrique-header">
       <h2 class="rubrique-title">Projets académiques</h2>
       <div class="rubrique-line"></div>
       <span class="rubrique-count">3 projets</span>
     </div>
- 
-    <!-- Projet 01 -->
-    <div class="project">
-      <div class="project-head">
-        <div class="project-num">01</div>
-        <div class="project-head-text">
-          <div class="project-title">Reporting automatisé — Caisses d'Allocations Familiales</div>
-          <div class="project-subtitle">Extraction, transformation et visualisation d'indicateurs nationaux</div>
-          <div class="project-tools">
-            <span class="tool">SAS</span><span class="tool">Excel</span><span class="tool">Power BI</span>
+
+    <div class="projects-grid">
+
+      <!-- Îlot 01 -->
+      <div class="project-card" onclick="openModal('p1')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="40" height="28" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
+              <path d="M4 18h40" stroke="#1A73E8" stroke-width="2"/>
+              <rect x="10" y="24" width="8" height="8" rx="1" fill="#1A73E8" opacity="0.3"/>
+              <rect x="22" y="22" width="8" height="10" rx="1" fill="#1A73E8" opacity="0.5"/>
+              <rect x="34" y="20" width="6" height="12" rx="1" fill="#1A73E8" opacity="0.7"/>
+            </svg>
+            <span class="ph-label">Image à venir</span>
+          </div>
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Pipeline SAS automatisé pour produire des indicateurs CAF fiables sur l'ensemble du territoire, restitués dans un dashboard Power BI interactif.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">SAS</span><span class="overlay-tool">Excel</span><span class="overlay-tool">Power BI</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="missions">
-        <div class="mission">
-          <div class="mission-label">Problème</div>
-          <div class="mission-text">Produire des indicateurs fiables et reproductibles à partir de données CAF multi-sources pour l'ensemble du territoire, avec traçabilité et cohérence garanties.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Solution</div>
-          <div class="mission-text">Scripts SAS d'extraction et nettoyage, pipeline automatisé de structuration des données, vérifications systématiques de cohérence à chaque étape.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Résultat</div>
-          <div class="mission-text">Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser.</div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 01</div>
+          <div class="project-card-title">Reporting automatisé — Caisses d'Allocations Familiales</div>
+          <div class="project-card-preview">Extraction, transformation et visualisation d'indicateurs nationaux multi-sources.</div>
         </div>
       </div>
-    </div>
- 
-    <!-- Projet 02 -->
-    <div class="project">
-      <div class="project-head">
-        <div class="project-num">02</div>
-        <div class="project-head-text">
-          <div class="project-title">Analyse des pratiques culturelles — Méthodes de sondage INSEE</div>
-          <div class="project-subtitle">Redressement statistique · Calage sur marges · Analyse sociodémographique</div>
-          <div class="project-tools">
-            <span class="tool">SAS</span><span class="tool">Macro Calmar</span><span class="tool">Excel</span>
+
+      <!-- Îlot 02 -->
+      <div class="project-card" onclick="openModal('p2')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="16" stroke="#1A73E8" stroke-width="2.5"/>
+              <path d="M24 8 A16 16 0 0 1 40 24" stroke="#1A73E8" stroke-width="2.5" fill="none"/>
+              <path d="M24 24 L24 8M24 24 L40 24" stroke="#1A73E8" stroke-width="2"/>
+              <circle cx="24" cy="24" r="3" fill="#1A73E8"/>
+              <path d="M10 36 Q18 28 24 32 Q30 36 38 28" stroke="#1A73E8" stroke-width="2" fill="none" opacity="0.5"/>
+            </svg>
+            <span class="ph-label">Image à venir</span>
+          </div>
+          
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Correction des biais de non-réponse via la macro Calmar INSEE pour rendre une enquête étudiante statistiquement représentative.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">SAS</span><span class="overlay-tool">Macro Calmar</span><span class="overlay-tool">Excel</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="missions">
-        <div class="mission">
-          <div class="mission-label">Problème</div>
-          <div class="mission-text">Exploiter une enquête sur les pratiques culturelles d'étudiants en corrigeant les biais de non-réponse pour obtenir un échantillon représentatif.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Solution</div>
-          <div class="mission-text">Application de la macro Calmar INSEE pour le redressement et le calage sur marges selon les variables clés. Analyse sous Excel avec tableaux et graphiques segmentés.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Résultat</div>
-          <div class="mission-text">Identification de tendances et profils types. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales.</div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 02</div>
+          <div class="project-card-title">Analyse des pratiques culturelles — Méthodes de sondage INSEE</div>
+          <div class="project-card-preview">Redressement statistique, calage sur marges et analyse sociodémographique.</div>
         </div>
       </div>
-    </div>
- 
-    <!-- Projet 03 -->
-    <div class="project">
-      <div class="project-head">
-        <div class="project-num">03</div>
-        <div class="project-head-text">
-          <div class="project-title">Dashboard interactif — Application R / Shiny</div>
-          <div class="project-subtitle">Conception et déploiement d'une interface d'exploration de données</div>
-          <div class="project-tools">
-            <span class="tool">R</span><span class="tool">Shiny</span><span class="tool">ggplot2</span><span class="tool">dplyr</span><span class="tool">tidyr</span><span class="tool">readxl</span>
+
+      <!-- Îlot 03 -->
+      <div class="project-card" onclick="openModal('p3')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="8" width="36" height="26" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
+              <path d="M6 18h36M6 28h36M18 8v26" stroke="#1A73E8" stroke-width="1.5" opacity="0.4"/>
+              <circle cx="12" cy="13" r="2.5" fill="#1A73E8" opacity="0.6"/>
+              <circle cx="24" cy="23" r="3.5" fill="#1A73E8" opacity="0.8"/>
+              <circle cx="34" cy="33" r="2" fill="#1A73E8" opacity="0.5"/>
+              <rect x="14" y="38" width="20" height="3" rx="1.5" fill="#1A73E8" opacity="0.3"/>
+            </svg>
+            <span class="ph-label">Image à venir</span>
+          </div>
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Interface Shiny déployée permettant à des utilisateurs non-techniques d'explorer un jeu de données complexe via des visualisations ggplot2 dynamiques.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">R</span><span class="overlay-tool">Shiny</span><span class="overlay-tool">ggplot2</span><span class="overlay-tool">dplyr</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="missions">
-        <div class="mission">
-          <div class="mission-label">Problème</div>
-          <div class="mission-text">Rendre un jeu de données complexe explorable de façon interactive par des utilisateurs non-techniques, tout en garantissant la rigueur des analyses.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Solution</div>
-          <div class="mission-text">Nettoyage complet via dplyr, tidyr et readxl. Visualisations dynamiques avec ggplot2. Interface Shiny avec filtres, modules et mises à jour automatiques.</div>
-        </div>
-        <div class="mission">
-          <div class="mission-label">Résultat</div>
-          <div class="mission-text">Application déployée, accessible et performante permettant une exploration autonome des données sans connaissance technique préalable.</div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 03</div>
+          <div class="project-card-title">Dashboard interactif — Application R / Shiny</div>
+          <div class="project-card-preview">Conception et déploiement d'une interface d'exploration de données accessible.</div>
         </div>
       </div>
+
     </div>
- 
   </div>
- 
 </div>
- 
+
 <footer>© 2026 – Portfolio Anthony El Dahdah · BUT Science des Données · IUT Paris Rives de Seine</footer>
+
+<!-- ══════════════ MODALE ══════════════ -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-num" id="modalNum"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+        <div class="modal-tools" id="modalTools"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  p1: {
+    num: 'Projet 01',
+    title: "Reporting automatisé — Caisses d'Allocations Familiales",
+    subtitle: "Extraction, transformation et visualisation d'indicateurs nationaux",
+    tools: ['SAS', 'Excel', 'Power BI'],
+    sections: [
+      {
+        label: 'Preuve',
+        text: '📎 À compléter — ajouter ici un lien vers le dashboard Power BI, une capture d\'écran du rendu final ou un extrait du code SAS.'
+      },
+      {
+        label: 'Contexte',
+        text: "Dans le cadre d'un projet SAE de BUT2, l'objectif était de produire des indicateurs fiables et reproductibles à partir de données multi-sources issues des Caisses d'Allocations Familiales (CAF) pour l'ensemble du territoire national. Les fichiers provenaient de sources hétérogènes nécessitant une harmonisation rigoureuse avant toute exploitation."
+      },
+      {
+        label: 'Objectifs & contraintes',
+        text: "Produire un reporting automatisé, traçable et cohérent à chaque mise à jour. Contraintes : garantir la reproductibilité du pipeline, assurer la cohérence des indicateurs à chaque étape de transformation, et livrer un dashboard lisible pour des destinataires non-techniques."
+      },
+      {
+        label: 'Montée en compétence',
+        text: '📝 À compléter — décrire les difficultés rencontrées (ex : gestion des données manquantes, automatisation des vérifications, prise en main de Power BI…) et ce que tu as appris en les surmontant. Compétences travaillées :',
+        competences: ['C1 — Traiter des données', 'C4 — Outil décisionnel']
+      },
+      {
+        label: 'Résultats obtenus',
+        text: "Pipeline SAS automatisé avec vérifications systématiques de cohérence à chaque étape. Dashboard Power BI interactif avec mise à jour automatique, filtres et vues personnalisées. Reporting final fiable et prêt à diffuser."
+      }
+    ]
+  },
+  p2: {
+    num: 'Projet 02',
+    title: "Analyse des pratiques culturelles — Méthodes de sondage INSEE",
+    subtitle: "Redressement statistique · Calage sur marges · Analyse sociodémographique",
+    tools: ['SAS', 'Macro Calmar', 'Excel'],
+    sections: [
+      {
+        label: 'Preuve',
+        text: "📎 À compléter — ajouter ici un lien vers le rapport d'analyse, des captures des tableaux de résultats ou un extrait du code SAS avec la macro Calmar."
+      },
+      {
+        label: 'Contexte',
+        text: "Exploitation d'une enquête sur les pratiques culturelles d'étudiants. L'échantillon présentait des biais de non-réponse importants qui rendaient les résultats bruts non représentatifs de la population cible. Il fallait corriger ces biais avant toute analyse sociodémographique."
+      },
+      {
+        label: 'Objectifs & contraintes',
+        text: "Rendre l'échantillon statistiquement représentatif par calage sur marges selon des variables clés (âge, sexe, filière…). Contraintes : respecter les marges de référence INSEE, valider la convergence de la macro Calmar, et interpréter les résultats avec rigueur inférentielle."
+      },
+      {
+        label: 'Montée en compétence',
+        text: "📝 À compléter — décrire les difficultés (ex : comprendre le principe de calage sur marges, interpréter les poids obtenus, distinguer analyse exploratoire et modélisation…) et ce que tu as appris. Compétences travaillées :",
+        competences: ['C2 — Analyser statistiquement', 'C3 — Valoriser une production']
+      },
+      {
+        label: 'Résultats obtenus',
+        text: "Échantillon redressé et représentatif. Identification de tendances et profils types dans les pratiques culturelles étudiantes. Conclusions structurées avec recommandations argumentées, confrontées aux hypothèses initiales."
+      }
+    ]
+  },
+  p3: {
+    num: 'Projet 03',
+    title: "Dashboard interactif — Application R / Shiny",
+    subtitle: "Conception et déploiement d'une interface d'exploration de données",
+    tools: ['R', 'Shiny', 'ggplot2', 'dplyr', 'tidyr', 'readxl'],
+    sections: [
+      {
+        label: 'Preuve',
+        text: "📎 À compléter — ajouter ici le lien vers l'application Shiny déployée (shinyapps.io ou autre) ou une capture d'écran de l'interface en fonctionnement."
+      },
+      {
+        label: 'Contexte',
+        text: "Conception et déploiement d'une application R/Shiny dans le cadre d'un projet académique. L'enjeu était de rendre un jeu de données complexe explorable de façon autonome par des utilisateurs non-techniques, sans qu'ils aient besoin de connaissances en programmation."
+      },
+      {
+        label: 'Objectifs & contraintes',
+        text: "Concevoir une interface intuitive avec filtres dynamiques, modules de visualisation et mises à jour automatiques. Contraintes : garantir la rigueur des analyses affichées, assurer la performance de l'application, et maintenir une lisibilité maximale pour un public non-technique."
+      },
+      {
+        label: 'Montée en compétence',
+        text: "📝 À compléter — décrire les difficultés (ex : structurer une app Shiny en modules, gérer la réactivité, choisir les bons graphiques ggplot2 selon les données…) et ce que tu as appris. Compétences travaillées :",
+        competences: ['C1 — Traiter des données', 'C4 — Outil décisionnel']
+      },
+      {
+        label: 'Résultats obtenus',
+        text: "Application déployée, accessible et performante. Interface avec filtres, onglets et visualisations dynamiques permettant une exploration autonome des données sans connaissance technique préalable."
+      }
+    ]
+  }
+};
+
+function openModal(id) {
+  const p = projects[id];
+  if (!p) return;
+
+  document.getElementById('modalNum').textContent = p.num;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalSubtitle').textContent = p.subtitle;
+  document.getElementById('modalTools').innerHTML = p.tools.map(t => `<span class="modal-tool">${t}</span>`).join('');
+
+  document.getElementById('modalBody').innerHTML = p.sections.map(s => `
+    <div class="modal-section">
+      <div class="modal-section-label"><span class="label-dot"></span>${s.label}</div>
+      <div class="modal-section-text">${s.text}</div>
+      ${s.competences ? `<div class="modal-competences">${s.competences.map(c => `<span class="modal-competence-tag">${c}</span>`).join('')}</div>` : ''}
+    </div>
+  `).join('');
+
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('modalBackdrop')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
 </body>
 </html>

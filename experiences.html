@@ -179,24 +179,21 @@
     }
 
     /* Thumb */
-    .project-thumb {
-      position: relative; width: 100%; overflow: hidden;
-      background: var(--gray);
-      flex-shrink: 0; /* FIX : ne pas laisser le thumb se compresser */
-    }
-    /* Ratios par projet */
-    .project-card[data-id="p1"] .project-thumb { padding-top: 47.6%; }
-    .project-card[data-id="p2"] .project-thumb { padding-top: 56.2%; }
-    .project-card[data-id="p3"] .project-thumb { padding-top: 44.1%; }
-    .project-card[data-id="p4"] .project-thumb,
-    .project-card[data-id="p5"] .project-thumb,
-    .project-card[data-id="p6"] .project-thumb { padding-top: 56%; }
+.project-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* ratio propre et uniforme */
+  overflow: hidden;
+  background: var(--gray);
+  flex-shrink: 0;
+}
+
 
     /* FIX images : z-index au-dessus du placeholder */
     .project-thumb img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       z-index: 1; /* au-dessus du placeholder */
       transition: transform 0.35s ease;
     }

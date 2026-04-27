@@ -175,10 +175,23 @@
       box-shadow: 0 8px 32px rgba(26,115,232,0.13);
       transform: translateY(-3px);
     }
+
+    /* Thumb : ratio adapté à chaque image */
     .project-thumb {
-      position: relative; width: 100%; padding-top: 72%; overflow: hidden;
+      position: relative; width: 100%; overflow: hidden;
       background: var(--gray);
     }
+    /* Projet 01 — 2838×1350 → ratio ~47.6% */
+    .project-card[data-id="p1"] .project-thumb { padding-top: 47.6%; }
+    /* Projet 02 — 1930×1084 → ratio ~56.2% */
+    .project-card[data-id="p2"] .project-thumb { padding-top: 56.2%; }
+    /* Projet 03 — 1456×642 → ratio ~44.1% */
+    .project-card[data-id="p3"] .project-thumb { padding-top: 44.1%; }
+    /* Projets 04-06 — placeholder carré */
+    .project-card[data-id="p4"] .project-thumb,
+    .project-card[data-id="p5"] .project-thumb,
+    .project-card[data-id="p6"] .project-thumb { padding-top: 56%; }
+
     .project-thumb-placeholder {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
@@ -260,7 +273,6 @@
     }
     .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
 
-    /* Header modale */
     .modal-header {
       position: sticky; top: 0; z-index: 10;
       background: var(--card);
@@ -295,7 +307,6 @@
     }
     .modal-close:hover { background: var(--gray); color: var(--dark); }
 
-    /* Body modale */
     .modal-body { padding: 0.25rem 1.75rem 2rem; }
 
     .modal-section {
@@ -313,6 +324,7 @@
     .label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
     .modal-section-text { font-size: 0.875rem; color: var(--dark); line-height: 1.78; }
+    .modal-section-text a { color: var(--blue); }
 
     .modal-competences { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.65rem; }
     .modal-competence-tag {
@@ -361,13 +373,13 @@
   <div class="page-header-inner">
     <div class="page-eyebrow">Projets · Missions · Réalisations</div>
     <h1 class="page-title">Mes <span>Expériences</span></h1>
-    <p class="page-intro">Un stage à venir et 3 projets menés sur données réelles, chacun structuré autour d'un problème concret, d'une solution mise en œuvre et d'un résultat livré.</p>
+    <p class="page-intro">Un stage en cours et 6 réalisations menées sur données réelles — chacune documentée avec preuves, contexte, montée en compétence et résultats.</p>
   </div>
 </div>
 
 <div class="content">
 
-  <!-- EXPÉRIENCE PROFESSIONNELLE -->
+  <!-- ══ EXPÉRIENCE PROFESSIONNELLE ══ -->
   <div class="rubrique">
     <div class="rubrique-header">
       <h2 class="rubrique-title">Expérience professionnelle</h2>
@@ -419,21 +431,25 @@
     </div>
   </div>
 
-  <!-- PROJETS ACADÉMIQUES -->
+  <!-- ══ PROJETS ACADÉMIQUES ══ -->
   <div class="rubrique">
     <div class="rubrique-header">
       <h2 class="rubrique-title">Projets académiques</h2>
       <div class="rubrique-line"></div>
-      <span class="rubrique-count">3 projets</span>
+      <span class="rubrique-count">6 projets</span>
     </div>
 
     <div class="projects-grid">
 
-      <!-- Îlot 01 -->
-      <div class="project-card" onclick="openModal('p1')">
+      <!-- ── Projet 01 ── -->
+      <div class="project-card" data-id="p1" onclick="openModal('p1')">
         <div class="project-thumb">
+          <!--
+            Remplace ce placeholder par ton image :
+            <img src="image/projet01.png" alt="Reporting CAF"/>
+          -->
           <div class="project-thumb-placeholder">
-            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="4" y="10" width="40" height="28" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
               <path d="M4 18h40" stroke="#1A73E8" stroke-width="2"/>
               <rect x="10" y="24" width="8" height="8" rx="1" fill="#1A73E8" opacity="0.3"/>
@@ -447,33 +463,35 @@
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Pipeline SAS automatisé pour produire des indicateurs CAF fiables sur l'ensemble du territoire, restitués dans un dashboard Power BI interactif.</div>
+            <div class="overlay-desc">Pipeline SAS automatisé pour des indicateurs CAF fiables sur tout le territoire, restitués dans un dashboard Power BI interactif.</div>
             <div class="overlay-tools">
               <span class="overlay-tool">SAS</span><span class="overlay-tool">Excel</span><span class="overlay-tool">Power BI</span>
             </div>
           </div>
         </div>
         <div class="project-info">
-          <div class="project-card-num">Projet 01</div>
+          <div class="project-card-num">Projet 01 · BUT2</div>
           <div class="project-card-title">Reporting automatisé — Caisses d'Allocations Familiales</div>
           <div class="project-card-preview">Extraction, transformation et visualisation d'indicateurs nationaux multi-sources.</div>
         </div>
       </div>
 
-      <!-- Îlot 02 -->
-      <div class="project-card" onclick="openModal('p2')">
+      <!-- ── Projet 02 ── -->
+      <div class="project-card" data-id="p2" onclick="openModal('p2')">
         <div class="project-thumb">
+          <!--
+            Remplace ce placeholder par ton image :
+            <img src="image/projet02.png" alt="Sondage INSEE"/>
+          -->
           <div class="project-thumb-placeholder">
-            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <circle cx="24" cy="24" r="16" stroke="#1A73E8" stroke-width="2.5"/>
               <path d="M24 8 A16 16 0 0 1 40 24" stroke="#1A73E8" stroke-width="2.5" fill="none"/>
               <path d="M24 24 L24 8M24 24 L40 24" stroke="#1A73E8" stroke-width="2"/>
               <circle cx="24" cy="24" r="3" fill="#1A73E8"/>
-              <path d="M10 36 Q18 28 24 32 Q30 36 38 28" stroke="#1A73E8" stroke-width="2" fill="none" opacity="0.5"/>
             </svg>
             <span class="ph-label">Image à venir</span>
           </div>
-          
           <div class="project-overlay">
             <div class="overlay-hint">
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -486,23 +504,26 @@
           </div>
         </div>
         <div class="project-info">
-          <div class="project-card-num">Projet 02</div>
+          <div class="project-card-num">Projet 02 · BUT2</div>
           <div class="project-card-title">Analyse des pratiques culturelles — Méthodes de sondage INSEE</div>
           <div class="project-card-preview">Redressement statistique, calage sur marges et analyse sociodémographique.</div>
         </div>
       </div>
 
-      <!-- Îlot 03 -->
-      <div class="project-card" onclick="openModal('p3')">
+      <!-- ── Projet 03 ── -->
+      <div class="project-card" data-id="p3" onclick="openModal('p3')">
         <div class="project-thumb">
+          <!--
+            Remplace ce placeholder par ton image :
+            <img src="image/projet03.png" alt="Dashboard Shiny"/>
+          -->
           <div class="project-thumb-placeholder">
-            <svg class="ph-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="6" y="8" width="36" height="26" rx="3" stroke="#1A73E8" stroke-width="2.5"/>
               <path d="M6 18h36M6 28h36M18 8v26" stroke="#1A73E8" stroke-width="1.5" opacity="0.4"/>
               <circle cx="12" cy="13" r="2.5" fill="#1A73E8" opacity="0.6"/>
               <circle cx="24" cy="23" r="3.5" fill="#1A73E8" opacity="0.8"/>
               <circle cx="34" cy="33" r="2" fill="#1A73E8" opacity="0.5"/>
-              <rect x="14" y="38" width="20" height="3" rx="1.5" fill="#1A73E8" opacity="0.3"/>
             </svg>
             <span class="ph-label">Image à venir</span>
           </div>
@@ -511,16 +532,100 @@
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Interface Shiny déployée permettant à des utilisateurs non-techniques d'explorer un jeu de données complexe via des visualisations ggplot2 dynamiques.</div>
+            <div class="overlay-desc">Dashboard Shiny "Santé & Territoires" — modèle linéaire interactif explorant les déterminants de l'espérance de vie par département.</div>
             <div class="overlay-tools">
               <span class="overlay-tool">R</span><span class="overlay-tool">Shiny</span><span class="overlay-tool">ggplot2</span><span class="overlay-tool">dplyr</span>
             </div>
           </div>
         </div>
         <div class="project-info">
-          <div class="project-card-num">Projet 03</div>
-          <div class="project-card-title">Dashboard interactif — Application R / Shiny</div>
-          <div class="project-card-preview">Conception et déploiement d'une interface d'exploration de données accessible.</div>
+          <div class="project-card-num">Projet 03 · BUT2</div>
+          <div class="project-card-title">Dashboard interactif — Santé & Territoires (R / Shiny)</div>
+          <div class="project-card-preview">Modélisation linéaire et exploration interactive des données de santé par département.</div>
+        </div>
+      </div>
+
+      <!-- ── Projet 04 ── -->
+      <div class="project-card" data-id="p4" onclick="openModal('p4')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
+              <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1A73E8" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <path d="M24 18v12M18 24h12" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span class="ph-label">À compléter</span>
+          </div>
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Projet BUT2 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 04 · BUT2</div>
+          <div class="project-card-title">Titre du projet 04 — À compléter</div>
+          <div class="project-card-preview">Description courte du projet — à renseigner.</div>
+        </div>
+      </div>
+
+      <!-- ── Projet 05 ── -->
+      <div class="project-card" data-id="p5" onclick="openModal('p5')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
+              <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1A73E8" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <path d="M24 18v12M18 24h12" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span class="ph-label">À compléter</span>
+          </div>
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Projet BUT2 ou BUT1 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 05 · BUT2</div>
+          <div class="project-card-title">Titre du projet 05 — À compléter</div>
+          <div class="project-card-preview">Description courte du projet — à renseigner.</div>
+        </div>
+      </div>
+
+      <!-- ── Projet 06 ── -->
+      <div class="project-card" data-id="p6" onclick="openModal('p6')">
+        <div class="project-thumb">
+          <div class="project-thumb-placeholder">
+            <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
+              <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1A73E8" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <path d="M24 18v12M18 24h12" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span class="ph-label">À compléter</span>
+          </div>
+          <div class="project-overlay">
+            <div class="overlay-hint">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Cliquer pour voir le détail
+            </div>
+            <div class="overlay-desc">Projet issu du stage ou BUT1 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-tools">
+              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-card-num">Projet 06 · Stage / BUT1</div>
+          <div class="project-card-title">Titre du projet 06 — À compléter</div>
+          <div class="project-card-preview">Description courte du projet — à renseigner.</div>
         </div>
       </div>
 
@@ -552,8 +657,10 @@
 
 <script>
 const projects = {
+
+  /* ─────────────────── PROJET 01 ─────────────────── */
   p1: {
-    num: 'Projet 01',
+    num: 'Projet 01 · BUT2',
     title: "Reporting automatisé — Caisses d'Allocations Familiales",
     subtitle: "Extraction, transformation et visualisation d'indicateurs nationaux",
     tools: ['SAS', 'Excel', 'Power BI'],
@@ -564,7 +671,7 @@ const projects = {
       },
       {
         label: 'Contexte',
-        text: "Dans le cadre d'un projet SAE de BUT2, l'objectif était de produire des indicateurs fiables et reproductibles à partir de données multi-sources issues des Caisses d'Allocations Familiales (CAF) pour l'ensemble du territoire national. Les fichiers provenaient de sources hétérogènes nécessitant une harmonisation rigoureuse avant toute exploitation."
+        text: "Dans le cadre d'un projet SAE de BUT2, l'objectif était de produire des indicateurs fiables et reproductibles à partir de données multi-sources issues des Caisses d'Allocations Familiales (CAF) couvrant l'ensemble du territoire national. Les fichiers provenaient de sources hétérogènes nécessitant une harmonisation rigoureuse avant toute exploitation."
       },
       {
         label: 'Objectifs & contraintes',
@@ -573,7 +680,7 @@ const projects = {
       {
         label: 'Montée en compétence',
         text: '📝 À compléter — décrire les difficultés rencontrées (ex : gestion des données manquantes, automatisation des vérifications, prise en main de Power BI…) et ce que tu as appris en les surmontant. Compétences travaillées :',
-        competences: ['C1 — Traiter des données', 'C4 — Outil décisionnel']
+        competences: ['C1 — Traiter des données', 'C4 VCOD — Outil décisionnel']
       },
       {
         label: 'Résultats obtenus',
@@ -581,8 +688,10 @@ const projects = {
       }
     ]
   },
+
+  /* ─────────────────── PROJET 02 ─────────────────── */
   p2: {
-    num: 'Projet 02',
+    num: 'Projet 02 · BUT2',
     title: "Analyse des pratiques culturelles — Méthodes de sondage INSEE",
     subtitle: "Redressement statistique · Calage sur marges · Analyse sociodémographique",
     tools: ['SAS', 'Macro Calmar', 'Excel'],
@@ -601,7 +710,7 @@ const projects = {
       },
       {
         label: 'Montée en compétence',
-        text: "📝 À compléter — décrire les difficultés (ex : comprendre le principe de calage sur marges, interpréter les poids obtenus, distinguer analyse exploratoire et modélisation…) et ce que tu as appris. Compétences travaillées :",
+        text: "📝 À compléter — décrire les difficultés (ex : comprendre le calage sur marges, interpréter les poids, distinguer analyse exploratoire et modélisation…) et ce que tu as appris. Compétences travaillées :",
         competences: ['C2 — Analyser statistiquement', 'C3 — Valoriser une production']
       },
       {
@@ -610,35 +719,83 @@ const projects = {
       }
     ]
   },
+
+  /* ─────────────────── PROJET 03 ─────────────────── */
   p3: {
-    num: 'Projet 03',
-    title: "Dashboard interactif — Application R / Shiny",
-    subtitle: "Conception et déploiement d'une interface d'exploration de données",
-    tools: ['R', 'Shiny', 'ggplot2', 'dplyr', 'tidyr', 'readxl'],
+    num: 'Projet 03 · BUT2',
+    title: "Dashboard interactif — Santé & Territoires (R / Shiny)",
+    subtitle: "Modélisation linéaire · Exploration interactive · Données de santé départementales",
+    tools: ['R', 'Shiny', 'ggplot2', 'dplyr', 'tidyr', 'lm()'],
     sections: [
       {
         label: 'Preuve',
-        text: "📎 À compléter — ajouter ici le lien vers l'application Shiny déployée (shinyapps.io ou autre) ou une capture d'écran de l'interface en fonctionnement."
+        text: 'Application déployée et accessible en ligne : <a href="https://anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/" target="_blank">anthonyeldahdah.shinyapps.io/dashboard_modele_lineaire/</a>'
       },
       {
         label: 'Contexte',
-        text: "Conception et déploiement d'une application R/Shiny dans le cadre d'un projet académique. L'enjeu était de rendre un jeu de données complexe explorable de façon autonome par des utilisateurs non-techniques, sans qu'ils aient besoin de connaissances en programmation."
+        text: "Dans le cadre d'un projet de modélisation statistique en BUT2, j'ai conçu et déployé un dashboard R/Shiny intitulé « Santé & Territoires ». L'application explore les déterminants socio-économiques et environnementaux de l'espérance de vie à la naissance, à l'échelle des départements français. Les données mobilisées incluent des indicateurs de revenus, de chômage, de densité médicale et de pollution."
       },
       {
         label: 'Objectifs & contraintes',
-        text: "Concevoir une interface intuitive avec filtres dynamiques, modules de visualisation et mises à jour automatiques. Contraintes : garantir la rigueur des analyses affichées, assurer la performance de l'application, et maintenir une lisibilité maximale pour un public non-technique."
+        text: "Permettre à un utilisateur non-technique d'explorer un modèle de régression linéaire multiple de façon interactive : sélection des variables explicatives, lecture des diagnostics du modèle (R², résidus, VIF), et interprétation cartographique des résultats. Contraintes : garantir la rigueur statistique des sorties affichées, gérer la multicolinéarité entre variables, et maintenir une interface fluide malgré la complexité des calculs."
       },
       {
         label: 'Montée en compétence',
-        text: "📝 À compléter — décrire les difficultés (ex : structurer une app Shiny en modules, gérer la réactivité, choisir les bons graphiques ggplot2 selon les données…) et ce que tu as appris. Compétences travaillées :",
-        competences: ['C1 — Traiter des données', 'C4 — Outil décisionnel']
+        text: "La principale difficulté a été de rendre les sorties statistiques d'un modèle linéaire lisibles par un public non-initié, sans les vider de leur rigueur. J'ai appris à structurer une app Shiny en modules réactifs indépendants pour éviter les rechargements inutiles, à diagnostiquer la multicolinéarité (VIF) et à choisir les variables pertinentes, et à coupler des graphiques ggplot2 avec des métriques numériques dans une interface cohérente. Ce projet m'a également permis de consolider ma capacité à m'adapter aux spécificités d'un domaine métier (données de santé publique). Compétences travaillées :",
+        competences: ['C2 — Analyser statistiquement', 'C4 EMS — Modéliser statistiquement', 'C3 — Valoriser une production']
       },
       {
         label: 'Résultats obtenus',
-        text: "Application déployée, accessible et performante. Interface avec filtres, onglets et visualisations dynamiques permettant une exploration autonome des données sans connaissance technique préalable."
+        text: "Application fonctionnelle déployée sur shinyapps.io. Le modèle final retenu explique une part significative de la variance de l'espérance de vie selon les variables sélectionnées. L'interface permet de visualiser les coefficients, les résidus, la carte des prédictions par département et les indicateurs de qualité du modèle (R², p-values). Le tout est accessible sans aucune connaissance en R."
       }
     ]
+  },
+
+  /* ─────────────────── PROJET 04 ─────────────────── */
+  p4: {
+    num: 'Projet 04 · BUT2',
+    title: "Titre du projet 04 — À compléter",
+    subtitle: "Sous-titre — type d'analyse ou de livrable",
+    tools: ['Outil 1', 'Outil 2'],
+    sections: [
+      { label: 'Preuve', text: '📎 À compléter — lien ou capture.' },
+      { label: 'Contexte', text: '📝 À compléter.' },
+      { label: 'Objectifs & contraintes', text: '📝 À compléter.' },
+      { label: 'Montée en compétence', text: '📝 À compléter. Compétences travaillées :', competences: ['C? — À renseigner'] },
+      { label: 'Résultats obtenus', text: '📝 À compléter.' }
+    ]
+  },
+
+  /* ─────────────────── PROJET 05 ─────────────────── */
+  p5: {
+    num: 'Projet 05 · BUT2',
+    title: "Titre du projet 05 — À compléter",
+    subtitle: "Sous-titre — type d'analyse ou de livrable",
+    tools: ['Outil 1', 'Outil 2'],
+    sections: [
+      { label: 'Preuve', text: '📎 À compléter — lien ou capture.' },
+      { label: 'Contexte', text: '📝 À compléter.' },
+      { label: 'Objectifs & contraintes', text: '📝 À compléter.' },
+      { label: 'Montée en compétence', text: '📝 À compléter. Compétences travaillées :', competences: ['C? — À renseigner'] },
+      { label: 'Résultats obtenus', text: '📝 À compléter.' }
+    ]
+  },
+
+  /* ─────────────────── PROJET 06 ─────────────────── */
+  p6: {
+    num: 'Projet 06 · Stage / BUT1',
+    title: "Titre du projet 06 — À compléter",
+    subtitle: "Sous-titre — issu du stage ou de BUT1",
+    tools: ['Outil 1', 'Outil 2'],
+    sections: [
+      { label: 'Preuve', text: '📎 À compléter — lien ou capture.' },
+      { label: 'Contexte', text: '📝 À compléter.' },
+      { label: 'Objectifs & contraintes', text: '📝 À compléter.' },
+      { label: 'Montée en compétence', text: '📝 À compléter. Compétences travaillées :', competences: ['C? — À renseigner'] },
+      { label: 'Résultats obtenus', text: '📝 À compléter.' }
+    ]
   }
+
 };
 
 function openModal(id) {

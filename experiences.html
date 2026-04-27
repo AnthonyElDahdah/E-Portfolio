@@ -196,11 +196,11 @@
     .project-thumb img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       z-index: 1; /* au-dessus du placeholder */
       transition: transform 0.35s ease;
     }
-    .project-card:hover .project-thumb img { transform: scale(1.01); }
+    .project-card:hover .project-thumb img { transform: scale(1.03); }
 
     /* FIX placeholder : z-index 0, derrière l'image */
     .project-thumb-placeholder {

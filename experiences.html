@@ -454,7 +454,7 @@
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Pipeline SAS automatisé pour des indicateurs CAF fiables sur tout le territoire, restitués dans un dashboard Power BI interactif.</div>
+            <div class="overlay-desc">Production d’indicateurs fiables sous SAS reporting automatisé sous Excel et intégration dans un dashboard Power BI interactif. Sélection dynamique d’une CAF avec mise à jour automatique des visualisations.</div>
             <div class="overlay-tools">
               <span class="overlay-tool">SAS</span><span class="overlay-tool">Excel</span><span class="overlay-tool">Power BI</span>
             </div>
@@ -533,21 +533,21 @@
       <!-- ── Projet 04 ── -->
       <div class="project-card" data-id="p4" onclick="openModal('p4')">
         <div class="project-thumb">
+          <img src="image/dashboard_shiny.jpg" alt="Série temporelles"/>
           <div class="project-thumb-placeholder">
             <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1A73E8" stroke-width="2.5" stroke-dasharray="4 3"/>
               <path d="M24 18v12M18 24h12" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
-            <span class="ph-label">En maintenance</span>
           </div>
           <div class="project-overlay">
             <div class="overlay-hint">
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Projet BUT2 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-desc">Analyse et décomposition d’une série épidémiologique sur plus de 30 ans. Comparaison de modèles de prévision (ARIMA, ETS) pour identifier le plus performant.</div>
             <div class="overlay-tools">
-              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+              <span class="overlay-tool">R</span>
             </div>
           </div>
         </div>
@@ -561,21 +561,21 @@
       <!-- ── Projet 05 ── -->
       <div class="project-card" data-id="p5" onclick="openModal('p5')">
         <div class="project-thumb">
+          <img src="image/dashboard_shiny.jpg" alt="Conformité"/>
           <div class="project-thumb-placeholder">
             <svg class="ph-icon" viewBox="0 0 48 48" fill="none">
               <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1A73E8" stroke-width="2.5" stroke-dasharray="4 3"/>
               <path d="M24 18v12M18 24h12" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
-            <span class="ph-label">En maintenance</span>
           </div>
           <div class="project-overlay">
             <div class="overlay-hint">
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Projet BUT2 ou BUT1 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-desc">Analyse de données clients et identification des risques liés à leur exploitation. Mise en place de solutions RGPD (pseudonymisation, chiffrement, gestion des accès).</div>
             <div class="overlay-tools">
-              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+              <span class="overlay-tool">Excel</span>
             </div>
           </div>
         </div>
@@ -696,15 +696,15 @@ const projects = {
   },
   p5: {
     num: 'Projet 05 · BUT2',
-    title: "Titre du projet 05 — Bientôt disponible",
-    subtitle: "Sous-titre — type d'analyse ou de livrable",
-    tools: ['Outil 1', 'Outil 2'],
+    title: "Conformité RGPD & Analyse d’impact (AIPD)",
+    subtitle: "Identification des données personnelles · Analyse des risques · Mise en conformité",
+    tools: ['Excel', 'RGPD / AIPD'],
     sections: [
-      { label: 'Preuve', text: '📎 À compléter — lien ou capture.' },
-      { label: 'Contexte', text: '📝 À compléter.' },
-      { label: 'Objectifs & contraintes', text: '📝 À compléter.' },
-      { label: 'Montée en compétence', text: '📝 À compléter. Compétences travaillées :', competences: ['C? — À renseigner'] },
-      { label: 'Résultats obtenus', text: '📝 À compléter.' }
+      { label: 'Preuve', text: 'Ajouter une analyse AIPD (schéma, tableau des risques ou extrait du travail réalisé sur la conformité RGPD et l’identification des données personnelles).' },
+      { label: 'Contexte', text: 'Dans le cadre d’un projet de BUT2, l’objectif était d’accompagner une entreprise de grande distribution dans sa mise en conformité avec le RGPD. L’entreprise exploite des données clients (identité, coordonnées, achats, préférences) afin d’analyser les comportements et optimiser ses campagnes marketing, ce qui soulève des enjeux importants en matière de protection des données personnelles.' },
+      { label: 'Objectifs & contraintes', text: 'Identifier les données personnelles présentes dans les bases, analyser les traitements réalisés, et évaluer les risques liés à leur utilisation à travers une AIPD. Les contraintes principales étaient de respecter le cadre réglementaire du RGPD (consentement, durée de conservation, droits des personnes), d’identifier les risques pour les individus, et de proposer des mesures de protection adaptées, à la fois techniques et organisationnelles.' },
+      { label: 'Montée en compétence', text: 'Les principales difficultés ont concerné l’identification et la qualification des données personnelles dans les fichiers, ainsi que la compréhension des exigences du RGPD appliquées à un cas concret. J’ai appris à analyser un traitement de données sous l’angle réglementaire, à évaluer les risques pour les personnes concernées, et à proposer des mesures de conformité adaptées dans le cadre d’une AIPD. Compétences travaillées :', competences: ['C1 — Traiter des données à des fins décisionnelles','C2 — Analyser statistiquement des données','C3 — Valoriser une production dans un contexte professionnel'] },
+      { label: 'Résultats obtenus', text: 'Identification et qualification des données personnelles dans les différentes bases. Réalisation d’une AIPD mettant en évidence les principaux risques (atteinte à la vie privée, fuite de données, profilage). Proposition de mesures de protection techniques et organisationnelles (pseudonymisation, chiffrement, limitation des accès). Le niveau de risque a été réduit à un niveau modéré grâce aux solutions proposées.' }
     ]
   },
   p6: {

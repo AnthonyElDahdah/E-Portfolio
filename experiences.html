@@ -601,16 +601,16 @@
               <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Cliquer pour voir le détail
             </div>
-            <div class="overlay-desc">Projet issu du stage ou BUT1 à ajouter — décrire ici le sujet en quelques mots.</div>
+            <div class="overlay-desc">Analyse des facteurs de mortalité de patients en soins intensifs via tests statistiques et modèle logistique sous R.</div>
             <div class="overlay-tools">
-              <span class="overlay-tool">Outil 1</span><span class="overlay-tool">Outil 2</span>
+              <span class="overlay-tool">R</span>
             </div>
           </div>
         </div>
         <div class="project-info">
-          <div class="project-card-num">Projet 06 · Stage / BUT1</div>
-          <div class="project-card-title">Titre du projet 06 — À compléter</div>
-          <div class="project-card-preview">Description courte du projet — à renseigner.</div>
+          <div class="project-card-num">Projet 06 · BUT1</div>
+          <div class="project-card-title">Facteurs de mortalité en soins intensifs</div>
+          <div class="project-card-preview">Analyse de données, reporting et datavisualisation</div>
         </div>
       </div>
 
@@ -707,20 +707,19 @@ const projects = {
       { label: 'Résultats obtenus', text: 'Identification et qualification des données personnelles dans les différentes bases. Réalisation d’une AIPD mettant en évidence les principaux risques (atteinte à la vie privée, fuite de données, profilage). Proposition de mesures de protection techniques et organisationnelles (pseudonymisation, chiffrement, limitation des accès). Le niveau de risque a été réduit à un niveau modéré grâce aux solutions proposées.' }
     ]
   },
-  p6: {
-    num: 'Projet 06 · Stage / BUT1',
+p6: {
+    num: 'Projet 06 · BUT1',
     title: "Facteurs de mortalité en soins intensifs",
-    subtitle: "Analyse de données, reporting et datavisualisation ",
+    subtitle: "Analyse de données, reporting et datavisualisation",
     tools: ['R'],
     sections: [
       { label: 'Preuve', text: '📎 À compléter — lien ou capture.' },
-      { label: 'Contexte', text: 'Dans le cadre du BUT1 Science des Données, ce projet de groupe (4 étudiants) a été réalisé à partir d'un jeu de données réel de patients admis en soins intensifs. L'objectif était de mener une étude statistique complète sur les facteurs influençant la mortalité hospitalière, en combinant analyse exploratoire, tests statistiques et modélisation.' },
-      { label: 'Objectifs & contraintes', text: 'Répondre à la question : "Comment les éléments liés à l'état des patients déterminent-ils leur risque de mortalité en soins intensifs ?" Cela impliquait de décrire les caractéristiques des patients (critères sociodémographiques, cliniques et physiologiques), d'identifier les variables associées au décès via des tests statistiques appropriés, puis de construire un modèle prédictif de la mortalité. La contrainte principale était de justifier rigoureusement chaque choix méthodologique (test de Chi², Fisher, t de Student, régression logistique) et de rendre les résultats lisibles pour un public non spécialiste, dans un temps de présentation limité à la soutenance.' },
-      { label: 'Montée en compétence', text: 'Ce projet m'a permis de mettre en pratique le cycle complet d'une analyse de données dans un contexte applicatif réel et sensible (données de santé). J'ai consolidé ma capacité à choisir les tests statistiques adaptés selon la nature des variables, à interpréter des résultats dans leur contexte clinique, et à construire et valider un modèle de régression logistique. La restitution sous forme de diaporama a aussi demandé un effort important de synthèse et de vulgarisation. Compétences travaillées :', competences: ['C1 — Traiter des données à des fins décisionnelles','C2 — Analyser statistiquement des données','C3 — Valoriser une production dans un contexte professionnel'] },
-      { label: 'Résultats obtenus', text: 'Le modèle logistique final retient quatre facteurs significativement associés à la mortalité en soins intensifs : l'âge (p < 2e-16), la présence d'une infection/sepsis (p = 0,0052), le score de gravité APS1 (p = 3,94e-06) et le score neurologique SCOMA1 (p = 3,43e-12). À l'inverse, les antécédents cardiovasculaires et rénaux se sont révélés moins prédictifs dans ce jeu de données. Ces résultats confirment l'hypothèse initiale selon laquelle l'état clinique à l'admission — et non uniquement les antécédents — est le principal déterminant du risque de décès en réanimation.' }
+      { label: 'Contexte', text: `Dans le cadre du BUT1 Science des Données, ce projet de groupe (4 étudiants) a été réalisé à partir d'un jeu de données réel de patients admis en soins intensifs. L'objectif était de mener une étude statistique complète sur les facteurs influençant la mortalité hospitalière, en combinant analyse exploratoire, tests statistiques et modélisation.` },
+      { label: 'Objectifs & contraintes', text: `Répondre à la question : "Comment les éléments liés à l'état des patients déterminent-ils leur risque de mortalité en soins intensifs ?" Cela impliquait de décrire les caractéristiques des patients (critères sociodémographiques, cliniques et physiologiques), d'identifier les variables associées au décès via des tests statistiques appropriés, puis de construire un modèle prédictif de la mortalité. La contrainte principale était de justifier rigoureusement chaque choix méthodologique (test de Chi², Fisher, t de Student, régression logistique) et de rendre les résultats lisibles pour un public non spécialiste, dans un temps de présentation limité à la soutenance.` },
+      { label: 'Montée en compétence', text: `Ce projet m'a permis de mettre en pratique le cycle complet d'une analyse de données dans un contexte applicatif réel et sensible (données de santé). J'ai consolidé ma capacité à choisir les tests statistiques adaptés selon la nature des variables, à interpréter des résultats dans leur contexte clinique, et à construire et valider un modèle de régression logistique. La restitution sous forme de diaporama a aussi demandé un effort important de synthèse et de vulgarisation. Compétences travaillées :`, competences: ['C2 — Analyser statistiquement des données', 'C3 — Valoriser une production dans un contexte professionnel'] },
+      { label: 'Résultats obtenus', text: `Le modèle logistique final retient quatre facteurs significativement associés à la mortalité en soins intensifs : l'âge (p < 2e-16), la présence d'une infection/sepsis (p = 0,0052), le score de gravité APS1 (p = 3,94e-06) et le score neurologique SCOMA1 (p = 3,43e-12). À l'inverse, les antécédents cardiovasculaires et rénaux se sont révélés moins prédictifs dans ce jeu de données. Ces résultats confirment l'hypothèse initiale selon laquelle l'état clinique à l'admission — et non uniquement les antécédents — est le principal déterminant du risque de décès en réanimation.` }
     ]
   }
-};
 
 function openModal(id) {
   const p = projects[id];
